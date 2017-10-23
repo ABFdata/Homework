@@ -1,2 +1,2 @@
 # Homework
-Andy's Homework UCI Data Analytics Bootcamp Fall 2017 - Sprint 2018
+Andy's Homework UCI Data Analytics Bootcamp Fall 2017 - Spring 2018
