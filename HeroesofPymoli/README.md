@@ -106,10 +106,10 @@ total_players.head()
 
 
     Undirrala66    5
+    Sondastan54    4
+    Hailaphos89    4
     Qarwen67       4
     Mindimnya67    4
-    Sondastan54    4
-    Saedue76       4
     Name: SN, dtype: int64
 
 
@@ -609,15 +609,15 @@ unique_items_counts_df.head()
       <td>11</td>
     </tr>
     <tr>
-      <th>Stormcaller</th>
-      <td>10</td>
-    </tr>
-    <tr>
       <th>Arcane Gem</th>
       <td>10</td>
     </tr>
     <tr>
-      <th>Trickster</th>
+      <th>Stormcaller</th>
+      <td>10</td>
+    </tr>
+    <tr>
+      <th>Woeful Adamantite Claymore</th>
       <td>9</td>
     </tr>
   </tbody>
@@ -3250,15 +3250,7 @@ Top_5_Final.set_index('SN').head()
   * Total Purchase Value
 
 
-**Most Popular Items**
-
-* Identify the 5 most popular items by purchase count, then list (in a table):
-  * Item ID
-  * Item Name
-  * Purchase Count
-  * Item Price
-  * Total Purchase Value
-
+***Popular Items***
 
 
 ```python
@@ -3309,17 +3301,17 @@ Item_count.head()
     </tr>
     <tr>
       <th>2</th>
-      <td>Stormcaller</td>
-      <td>10</td>
-    </tr>
-    <tr>
-      <th>3</th>
       <td>Arcane Gem</td>
       <td>10</td>
     </tr>
     <tr>
+      <th>3</th>
+      <td>Stormcaller</td>
+      <td>10</td>
+    </tr>
+    <tr>
       <th>4</th>
-      <td>Trickster</td>
+      <td>Woeful Adamantite Claymore</td>
       <td>9</td>
     </tr>
   </tbody>
@@ -3475,9 +3467,9 @@ Most_Popular_Name_Merge = pd.merge(Most_Popular_Name_sum, Most_Popular_Name_coun
 
 Most_Popular_Name_Merge = Most_Popular_Name_Merge.rename(columns={'Item Name':'Item Name',
                                   'Price_x':'Total_Purchase_Value',
-                                   'Price_y': 'Purhcase_Count'})
+                                   'Price_y': 'Purchase_Count'})
 Most_Popular_Name_Merge = Most_Popular_Name_Merge[['Item Name',
-                          'Purhcase_Count',
+                          'Purchase_Count',
                           'Total_Purchase_Value']]
 Most_Popular_Name_Merge = Most_Popular_Name_Merge.round(2)
 Most_Popular_Name_Merge.head()
@@ -3505,7 +3497,7 @@ Most_Popular_Name_Merge.head()
     <tr style="text-align: right;">
       <th></th>
       <th>Item Name</th>
-      <th>Purhcase_Count</th>
+      <th>Purchase_Count</th>
       <th>Total_Purchase_Value</th>
     </tr>
   </thead>
@@ -3694,9 +3686,9 @@ Most_Popular_ID_Merge = pd.merge(Most_Popular_ID_sum, Most_Popular_ID_count, on 
 
 Most_Popular_ID_Merge = Most_Popular_ID_Merge.rename(columns={'Item ID':'Item ID',
                                   'Price_x':'Total_Purchase_Value',
-                                   'Price_y': 'Purhcase_Count'})
+                                   'Price_y': 'Purchase_Count'})
 Most_Popular_ID_Merge = Most_Popular_ID_Merge[['Item ID',
-                          'Purhcase_Count',
+                          'Purchase_Count',
                           'Total_Purchase_Value']]
 Most_Popular_ID_Merge = Most_Popular_ID_Merge.round(2)
 Most_Popular_ID_Merge.head()
@@ -3724,7 +3716,7 @@ Most_Popular_ID_Merge.head()
     <tr style="text-align: right;">
       <th></th>
       <th>Item ID</th>
-      <th>Purhcase_Count</th>
+      <th>Purchase_Count</th>
       <th>Total_Purchase_Value</th>
     </tr>
   </thead>
@@ -3765,90 +3757,23 @@ Most_Popular_ID_Merge.head()
 
 
 
-**Most Profitable Items**
-
-* Identify the 5 most profitable items by total purchase value, then list (in a table):
-  * Item ID
-  * Item Name
-  * Purchase Count
-  * Item Price
-  * Total Purchase Value
-
-   ***Most Profitable Items - can be determined by Most_Popular_Name_Merge - DF***
-
 
 ```python
-Most_Popular_Name_Merge.head()
+# Create new DF with Item ID, Item Name and Price
+
+Item_ID_Name_Price = pd.DataFrame(CLEAN_PURCHASE_DATA[['Item ID',
+                                                      'Item Name',
+                                                      'Price']])
 ```
 
 
-
-
-<div>
-<style>
-    .dataframe thead tr:only-child th {
-        text-align: right;
-    }
-
-    .dataframe thead th {
-        text-align: left;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Item Name</th>
-      <th>Purhcase_Count</th>
-      <th>Total_Purchase_Value</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>Retribution Axe</td>
-      <td>9</td>
-      <td>37.26</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>Final Critic</td>
-      <td>13</td>
-      <td>37.24</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>Stormcaller</td>
-      <td>10</td>
-      <td>34.65</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>Spectral Diamond Doomblade</td>
-      <td>7</td>
-      <td>29.75</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>Orenmir</td>
-      <td>6</td>
-      <td>29.70</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
-
-***Or by Most_Popular_ID_Merge -DF***
-
-
 ```python
-Most_Popular_ID_Merge.head()
+# Merge with Most Popular ID Merge
+
+Item_ID_Name_Price_Merge = pd.merge(Item_ID_Name_Price,
+                                    Most_Popular_ID_Merge, on = "Item ID")
+Item_ID_Name_Price_Merge = Item_ID_Name_Price_Merge.sort_values(['Purchase_Count'], ascending=False)
+Item_ID_Name_Price_Merge.head()
 ```
 
 
@@ -3873,40 +3798,52 @@ Most_Popular_ID_Merge.head()
     <tr style="text-align: right;">
       <th></th>
       <th>Item ID</th>
-      <th>Purhcase_Count</th>
+      <th>Item Name</th>
+      <th>Price</th>
+      <th>Purchase_Count</th>
       <th>Total_Purchase_Value</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th>0</th>
-      <td>34</td>
-      <td>9</td>
-      <td>37.26</td>
+      <th>262</th>
+      <td>39</td>
+      <td>Betrayal, Whisper of Grieving Widows</td>
+      <td>2.35</td>
+      <td>11</td>
+      <td>25.85</td>
     </tr>
     <tr>
-      <th>1</th>
-      <td>115</td>
-      <td>7</td>
-      <td>29.75</td>
+      <th>261</th>
+      <td>39</td>
+      <td>Betrayal, Whisper of Grieving Widows</td>
+      <td>2.35</td>
+      <td>11</td>
+      <td>25.85</td>
     </tr>
     <tr>
-      <th>2</th>
-      <td>32</td>
-      <td>6</td>
-      <td>29.70</td>
+      <th>260</th>
+      <td>39</td>
+      <td>Betrayal, Whisper of Grieving Widows</td>
+      <td>2.35</td>
+      <td>11</td>
+      <td>25.85</td>
     </tr>
     <tr>
-      <th>3</th>
-      <td>103</td>
-      <td>6</td>
-      <td>29.22</td>
+      <th>259</th>
+      <td>39</td>
+      <td>Betrayal, Whisper of Grieving Widows</td>
+      <td>2.35</td>
+      <td>11</td>
+      <td>25.85</td>
     </tr>
     <tr>
-      <th>4</th>
-      <td>107</td>
-      <td>8</td>
-      <td>28.88</td>
+      <th>264</th>
+      <td>39</td>
+      <td>Betrayal, Whisper of Grieving Widows</td>
+      <td>2.35</td>
+      <td>11</td>
+      <td>25.85</td>
     </tr>
   </tbody>
 </table>
@@ -3916,5 +3853,175 @@ Most_Popular_ID_Merge.head()
 
 
 ```python
+# Drop Duplicates in Item_ID_Name_Price_Merge
 
+ItemID_NamePrice_CLEAN = Item_ID_Name_Price_Merge.drop_duplicates()
+ItemID_NamePrice_CLEAN.head()
 ```
+
+
+
+
+<div>
+<style>
+    .dataframe thead tr:only-child th {
+        text-align: right;
+    }
+
+    .dataframe thead th {
+        text-align: left;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Item ID</th>
+      <th>Item Name</th>
+      <th>Price</th>
+      <th>Purchase_Count</th>
+      <th>Total_Purchase_Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>262</th>
+      <td>39</td>
+      <td>Betrayal, Whisper of Grieving Widows</td>
+      <td>2.35</td>
+      <td>11</td>
+      <td>25.85</td>
+    </tr>
+    <tr>
+      <th>434</th>
+      <td>84</td>
+      <td>Arcane Gem</td>
+      <td>2.23</td>
+      <td>10</td>
+      <td>22.30</td>
+    </tr>
+    <tr>
+      <th>337</th>
+      <td>175</td>
+      <td>Woeful Adamantite Claymore</td>
+      <td>1.24</td>
+      <td>9</td>
+      <td>11.16</td>
+    </tr>
+    <tr>
+      <th>159</th>
+      <td>13</td>
+      <td>Serenity</td>
+      <td>1.49</td>
+      <td>9</td>
+      <td>13.41</td>
+    </tr>
+    <tr>
+      <th>236</th>
+      <td>31</td>
+      <td>Trickster</td>
+      <td>2.07</td>
+      <td>9</td>
+      <td>18.63</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+**Most Profitable Items**
+
+* Identify the 5 most profitable items by total purchase value, then list (in a table):
+  * Item ID
+  * Item Name
+  * Purchase Count
+  * Item Price
+  * Total Purchase Value
+
+   ***Most Profitable Items Data Frame***
+
+
+```python
+ItemID_NamePrice_CLEAN = ItemID_NamePrice_CLEAN.sort_values(['Total_Purchase_Value'], ascending=False)
+ItemID_NamePrice_CLEAN.head()
+```
+
+
+
+
+<div>
+<style>
+    .dataframe thead tr:only-child th {
+        text-align: right;
+    }
+
+    .dataframe thead th {
+        text-align: left;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Item ID</th>
+      <th>Item Name</th>
+      <th>Price</th>
+      <th>Purchase_Count</th>
+      <th>Total_Purchase_Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>253</th>
+      <td>34</td>
+      <td>Retribution Axe</td>
+      <td>4.14</td>
+      <td>9</td>
+      <td>37.26</td>
+    </tr>
+    <tr>
+      <th>416</th>
+      <td>115</td>
+      <td>Spectral Diamond Doomblade</td>
+      <td>4.25</td>
+      <td>7</td>
+      <td>29.75</td>
+    </tr>
+    <tr>
+      <th>217</th>
+      <td>32</td>
+      <td>Orenmir</td>
+      <td>4.95</td>
+      <td>6</td>
+      <td>29.70</td>
+    </tr>
+    <tr>
+      <th>389</th>
+      <td>103</td>
+      <td>Singed Scalpel</td>
+      <td>4.87</td>
+      <td>6</td>
+      <td>29.22</td>
+    </tr>
+    <tr>
+      <th>529</th>
+      <td>107</td>
+      <td>Splitter, Foe Of Subtlety</td>
+      <td>3.61</td>
+      <td>8</td>
+      <td>28.88</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
