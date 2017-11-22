@@ -245,8 +245,8 @@ pyber_merge.head()
 
 
 ```python
-test = pd.DataFrame(pyber_merge[['city', 'fare', 'type', 'ride_id', 'driver_count']])
-test.head()
+df = pd.DataFrame(pyber_merge[['city', 'fare', 'type', 'ride_id', 'driver_count']])
+df.head()
 ```
 
 
@@ -327,73 +327,73 @@ test.head()
 
 ```python
 # Filter's out Urban
-test_urban = test[test['type'] == 'Urban']
+df_urban = df[df['type'] == 'Urban']
 ```
 
 
 ```python
 # Total Rides Per City for Urban 
-x_urban = pd.DataFrame(test_urban.groupby('city')['fare'].count())
+x_urban = pd.DataFrame(df_urban.groupby('city')['fare'].count())
 ```
 
 
 ```python
 # Avg Fare Per City for Urban
-y_urban = pd.DataFrame(test_urban.groupby('city')['fare'].mean())
+y_urban = pd.DataFrame(df_urban.groupby('city')['fare'].mean())
 ```
 
 
 ```python
 # Driver Count Per City for Urban
-z_urban = pd.DataFrame(test_urban.groupby('city')['driver_count'].count())
+z_urban = pd.DataFrame(df_urban.groupby('city')['driver_count'].count())
 ```
 
 
 ```python
 # Filter's out Suburban
-test_suburban = test[test['type'] =='Suburban']
+df_suburban = df[df['type'] =='Suburban']
 ```
 
 
 ```python
 # Total Rides Per City
-x_suburban = pd.DataFrame(test_suburban.groupby('city')['fare'].count())
+x_suburban = pd.DataFrame(df_suburban.groupby('city')['fare'].count())
 ```
 
 
 ```python
 # Avg Fare Per City
-y_suburban = pd.DataFrame(test_suburban.groupby('city')['fare'].mean())
+y_suburban = pd.DataFrame(df_suburban.groupby('city')['fare'].mean())
 ```
 
 
 ```python
 # Driver Count Per City
-z_suburban = pd.DataFrame(test_suburban.groupby('city')['driver_count'].count())
+z_suburban = pd.DataFrame(df_suburban.groupby('city')['driver_count'].count())
 ```
 
 
 ```python
 # Filter's out Rural
-test_rural = test[test['type'] =='Rural']
+df_rural = df[df['type'] =='Rural']
 ```
 
 
 ```python
 # Total Rides Per City
-x_rural = pd.DataFrame(test_rural.groupby('city')['fare'].count())
+x_rural = pd.DataFrame(df_rural.groupby('city')['fare'].count())
 ```
 
 
 ```python
 # Avg Fare Per City
-y_rural = pd.DataFrame(test_rural.groupby('city')['fare'].mean())
+y_rural = pd.DataFrame(df_rural.groupby('city')['fare'].mean())
 ```
 
 
 ```python
 # Driver Count Per City
-z_rural = pd.DataFrame(test_rural.groupby('city')['driver_count'].count())
+z_rural = pd.DataFrame(df_rural.groupby('city')['driver_count'].count())
 ```
 
 
@@ -433,7 +433,7 @@ plt.ylabel("Average Fare($)")
 
 
 
-    <matplotlib.text.Text at 0x12330dd30>
+    <matplotlib.text.Text at 0x107ee5a90>
 
 
 
@@ -475,7 +475,7 @@ plt.legend((urban_plot, suburban_plot, rural_plot), ('Urban', 'Suburban', 'Rural
 
 
 
-    <matplotlib.legend.Legend at 0x1232e80f0>
+    <matplotlib.legend.Legend at 0x112aaada0>
 
 
 
@@ -493,8 +493,46 @@ plt.show()
 
 
 ```python
-total_fares_sum = pyber_merge['fare'].sum()
-total_fares_sum
+rural_price = df_rural['fare'].sum()
+rural_price
+```
+
+
+
+
+    4255.090000000002
+
+
+
+
+```python
+suburban_price = df_suburban['fare'].sum()
+suburban_price
+```
+
+
+
+
+    19317.88000000001
+
+
+
+
+```python
+urban_price = df_urban['fare'].sum()
+urban_price
+```
+
+
+
+
+    40078.33999999997
+
+
+
+
+```python
+pyber_merge['fare'].sum()
 ```
 
 
@@ -506,33 +544,12 @@ total_fares_sum
 
 
 ```python
-rural_fares = pyber_merge.query("type !='Suburban'")
-rural_fares2 = rural_fares.query("type !='Urban'")
-rural_fares_total = rural_fares2['fare'].sum()
-```
-
-
-```python
-suburban_fares = pyber_merge.query("type !='Rural'")
-suburban_fares2 = suburban_fares.query("type !='Urban'")
-suburban_fares_total = suburban_fares2['fare'].sum()
-```
-
-
-```python
-urban_fares = pyber_merge.query("type !='Rural'")
-urban_fares2 = urban_fares.query("type !='Suburban'")
-urban_fares_total = urban_fares2['fare'].sum()
-```
-
-
-```python
 # add values to new list
 
 pie_chart1 = []
-pie_chart1.append(rural_fares_total)
-pie_chart1.append(suburban_fares_total)
-pie_chart1.append(urban_fares_total)
+pie_chart1.append(rural_price)
+pie_chart1.append(suburban_price)
+pie_chart1.append(urban_price)
 ```
 
 ** % Total Fares by City Type Pie Chart **
