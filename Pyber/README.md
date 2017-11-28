@@ -326,7 +326,7 @@ df.head()
 
 
 ```python
-# Filter's out Urban
+# Search df for Urban
 df_urban = df[df['type'] == 'Urban']
 ```
 
@@ -350,7 +350,7 @@ z_urban = pd.DataFrame(df_urban.groupby('city')['driver_count'].count())
 
 
 ```python
-# Filter's out Suburban
+# Search df for Suburban
 df_suburban = df[df['type'] =='Suburban']
 ```
 
@@ -374,7 +374,7 @@ z_suburban = pd.DataFrame(df_suburban.groupby('city')['driver_count'].count())
 
 
 ```python
-# Filter's out Rural
+# Search df for Rural
 df_rural = df[df['type'] =='Rural']
 ```
 
@@ -433,7 +433,7 @@ plt.ylabel("Average Fare($)")
 
 
 
-    <matplotlib.text.Text at 0x107ee5a90>
+    <matplotlib.text.Text at 0x10f4e49b0>
 
 
 
@@ -475,7 +475,7 @@ plt.legend((urban_plot, suburban_plot, rural_plot), ('Urban', 'Suburban', 'Rural
 
 
 
-    <matplotlib.legend.Legend at 0x112aaada0>
+    <matplotlib.legend.Legend at 0x10f284390>
 
 
 
