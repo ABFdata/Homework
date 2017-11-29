@@ -433,7 +433,7 @@ plt.ylabel("Average Fare($)")
 
 
 
-    <matplotlib.text.Text at 0x10f4e49b0>
+    <matplotlib.text.Text at 0x10f5d9438>
 
 
 
@@ -475,7 +475,7 @@ plt.legend((urban_plot, suburban_plot, rural_plot), ('Urban', 'Suburban', 'Rural
 
 
 
-    <matplotlib.legend.Legend at 0x10f284390>
+    <matplotlib.legend.Legend at 0x10f600be0>
 
 
 
@@ -560,7 +560,7 @@ pie_chart1.append(urban_price)
 
 labels = ["Rural", "Suburan", "Urban"]
 colors = ["Gold", "lightskyblue", "lightcoral"]
-explode = (0.05,0.05,0)
+explode = (0,0,0.07)
 ```
 
 
@@ -615,7 +615,7 @@ pie_chart2.append(urban_rides)
 ```python
 labels = ["Rural", "Suburan", "Urban"]
 colors = ["Gold", "lightskyblue", "lightcoral"]
-explode = (0.05,0.05,0)
+explode = (0,0,0.07)
 
 ```
 
@@ -669,7 +669,7 @@ pie_chart3.append(urban_total)
 ```python
 labels = ["Rural", "Suburan", "Urban"]
 colors = ["Gold", "lightskyblue", "lightcoral"]
-explode = (0.05,0.05,0)
+explode = (0,0,0.07)
 
 ```
 
