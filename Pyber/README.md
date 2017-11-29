@@ -433,7 +433,7 @@ plt.ylabel("Average Fare($)")
 
 
 
-    <matplotlib.text.Text at 0x10f5d9438>
+    <matplotlib.text.Text at 0x11a03be48>
 
 
 
@@ -475,7 +475,7 @@ plt.legend((urban_plot, suburban_plot, rural_plot), ('Urban', 'Suburban', 'Rural
 
 
 
-    <matplotlib.legend.Legend at 0x10f600be0>
+    <matplotlib.legend.Legend at 0x119efeac8>
 
 
 
@@ -692,8 +692,3 @@ plt.show()
 
 ![png](output_49_0.png)
 
-
-
-```python
-
-```
