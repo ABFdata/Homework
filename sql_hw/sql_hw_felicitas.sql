@@ -77,7 +77,7 @@ update actor
 set first_name = 'HARPO'
 where first_name = 'GROUCHO' and last_name = 'WILLIAMS';
 
-select first_name, last_name
+select actor_id, first_name, last_name
 from actor
 where first_name = 'HARPO';
 
@@ -86,5 +86,45 @@ where first_name = 'HARPO';
 -- Otherwise, change the first name to `MUCHO GROUCHO`, as that is exactly what the actor will be with the grievous error. 
 -- BE CAREFUL NOT TO CHANGE THE FIRST NAME OF EVERY ACTOR TO `MUCHO GROUCHO`, 
 -- HOWEVER! (Hint: update the record using a unique identifier.)
+
+update actor
+set first_name = 'GROUCHO'
+where actor_id = 172;
+-- first_name = 'HARPO' and last_name = 'WILLIAMS';
+
+select actor_id, first_name, last_name
+from actor
+where first_name = 'GROUCHO';
+
+-- 5a. You cannot locate the schema of the `address` table. Which query would you use to re-create it?
+select * from address;
+
+create table address_new (
+	address_id smallint(5),
+	address varchar(50), 
+    address2 varchar(50),
+    district varchar(20),
+    city_id smallint(5),
+    postal_code varchar(10),
+    phone varchar(20),
+    location geometry,
+    last_update timestamp
+);
+
+select * from address_new;
+
+-- 6a. Use `JOIN` to display the first and last names, as well as the address, of each staff member. 
+-- Use the tables `staff` and `address`:
+-- table staff
+
+select * from staff;
+
+select first_name, last_name, address
+from staff 
+inner join address
+on staff.address_id = address.address_id
+
+
+    
 
 
