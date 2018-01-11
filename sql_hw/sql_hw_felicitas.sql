@@ -121,10 +121,47 @@ select * from staff;
 
 select first_name, last_name, address
 from staff 
-inner join address
-on staff.address_id = address.address_id
+join address
+on staff.address_id = address.address_id;
+
+-- 6b. Use `JOIN` to display the total amount rung up by each staff member in August of 2005. 
+-- Use tables `staff` and `payment`. 
+select * from payment;
+
+select first_name, last_name, amount, payment_date 
+from staff
+join payment
+on staff.staff_id = payment.staff_id
+where payment_date like '2005-08%';
+
+-- 6c. List each film and the number of actors who are listed for that film. 
+-- Use tables `film_actor` and `film`. Use inner join.
+-- select title, actor_id
+-- from film_actor
+-- inner join film
+-- on film_actor.film_id = film.film_id;
+
+select title, count(*) as actor_count
+from film_actor
+inner join film
+on film_actor.film_id = film.film_id
+group by film_actor.film_id;
+
+-- 6d. How many copies of the film `Hunchback Impossible` exist in the inventory system?
+
+select title -- count(*) as film_count
+from film
+inner join inventory 
+on inventory.film_id = film.film_id;
+-- group by inventory_id.film_id
+-- where title = 'Hunchback Impossible'
 
 
-    
+ select title
+ from film
+ where title = 'Hunchback Impossible';
+ 
+
+
 
 
