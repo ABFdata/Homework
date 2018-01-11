@@ -148,19 +148,41 @@ on film_actor.film_id = film.film_id
 group by film_actor.film_id;
 
 -- 6d. How many copies of the film `Hunchback Impossible` exist in the inventory system?
+-- this displays how many 'Hunchback Impossible' are found in the column title
+select title
+from film 
+inner join inventory
+on inventory.film_id = film.film_id
+where title = 'Hunchback Impossible';
 
-select title -- count(*) as film_count
+-- this counts the copies of 'Hunchback Impossible'
+select count(*) as hunchback_copies
 from film
 inner join inventory 
-on inventory.film_id = film.film_id;
--- group by inventory_id.film_id
--- where title = 'Hunchback Impossible'
+on inventory.film_id = film.film_id
+where title = 'Hunchback Impossible'
+having (hunchback_copies >=1);
 
+-- 6e. Using the tables `payment` and `customer` and the `JOIN` command, list the total paid by each customer. 
+-- List the customers alphabetically by last name:
 
- select title
- from film
- where title = 'Hunchback Impossible';
- 
+select first_name, last_name, amount
+from customer 
+join payment
+on customer.customer_id = payment.customer_id
+order by last_name asc;
+
+-- sum ther purchase amount for each person 
+select first_name, last_name, sum(amount)
+from customer 
+join payment
+on customer.customer_id = payment.customer_id
+group by first_name, last_name
+order by last_name asc;
+
+--  7a. The music of Queen and Kris Kristofferson have seen an unlikely resurgence. As an unintended consequence, 
+-- films starting with the letters `K` and `Q` have also soared in popularity. Use subqueries to display the titles 
+-- of movies starting with the letters `K` and `Q` whose language is English. 
 
 
 
