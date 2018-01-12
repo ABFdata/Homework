@@ -128,11 +128,12 @@ on staff.address_id = address.address_id;
 -- Use tables `staff` and `payment`. 
 select * from payment;
 
-select first_name, last_name, amount, payment_date 
+select first_name, last_name, sum(amount) as 'total'
 from staff
 join payment
 on staff.staff_id = payment.staff_id
-where payment_date like '2005-08%';
+where payment_date like '2005-08%'
+group by staff.staff_id;
 
 -- 6c. List each film and the number of actors who are listed for that film. 
 -- Use tables `film_actor` and `film`. Use inner join.
@@ -165,14 +166,7 @@ having (hunchback_copies >=1);
 
 -- 6e. Using the tables `payment` and `customer` and the `JOIN` command, list the total paid by each customer. 
 -- List the customers alphabetically by last name:
-
-select first_name, last_name, amount
-from customer 
-join payment
-on customer.customer_id = payment.customer_id
-order by last_name asc;
-
--- sum ther purchase amount for each person 
+-- sum the purchase amount for each person 
 select first_name, last_name, sum(amount)
 from customer 
 join payment
@@ -183,6 +177,85 @@ order by last_name asc;
 --  7a. The music of Queen and Kris Kristofferson have seen an unlikely resurgence. As an unintended consequence, 
 -- films starting with the letters `K` and `Q` have also soared in popularity. Use subqueries to display the titles 
 -- of movies starting with the letters `K` and `Q` whose language is English. 
+
+select title, name
+from film as f
+join language as l
+on f.language_id = l.language_id
+where title like "K%" or title like "Q%";
+
+-- 7b. Use subqueries to display all actors who appear in the film `Alone Trip`.
+
+select first_name, last_name, actor_id
+from actor
+where actor_id in
+(
+(select actor_id
+from film_actor
+where film_id in 
+(select film_id
+from film
+where title = 'Alone Trip')
+));
+
+-- 7c. You want to run an email marketing campaign in Canada, for which you will need the names and email addresses 
+-- of all Canadian customers. Use joins to retrieve this information.
+
+select * from customer; -- has address_id, first_name, last_name, email
+select * from address; -- has address_id, city_id
+select * from country;-- has country_id, country
+select * from city;-- has city and country_id, city_id
+
+-- first attempt --
+select first_name, last_name, email
+from customer
+where address_id in
+(
+(select address_id
+from address as a
+join city as c
+on a.city_id = c.city_id
+where country_id = 20)
+);
+-- end of first attempt --
+
+-- second attempt using sub query --
+select first_name, last_name, email
+from customer
+where address_id in
+(
+(select address_id
+from address as a
+join city as c
+on a.city_id = c.city_id
+where country_id in
+(select country
+from city as c
+join country as co
+on c.country_id = co.country_id
+where country = 'Canada')
+));
+-- second attempt was null --
+
+-- THIRD ATTEMPT THIS ONE WORKED! --
+
+select first_name, last_name, email, country
+from customer as c
+inner join address as a
+on c.address_id = a.address_id
+inner join city as ci
+on a.city_id = ci.city_id
+inner join country as co
+on ci.country_id = co.country_id
+where co.country = 'Canada';
+
+
+
+
+
+
+
+
 
 
 
