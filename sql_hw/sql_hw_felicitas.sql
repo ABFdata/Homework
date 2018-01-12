@@ -249,14 +249,109 @@ inner join country as co
 on ci.country_id = co.country_id
 where co.country = 'Canada';
 
+-- 7d. Sales have been lagging among young families, and you wish to target all family movies for a promotion. 
+-- Identify all movies categorized as famiy films.
+
+select * from category; -- category_id, name(category)
+select * from film; -- film_id, title
+select * from film_category; -- film_id, category_id
+
+select title, name as category
+from film as f
+inner join film_category as fc
+on f.film_id = fc.film_id
+inner join category as c
+on fc.category_id = c.category_id
+where c.name = "Family";
+
+-- 7e. Display the most frequently rented movies in descending order.
+select * from film; -- title, rental_duration, 
+select * from rental; -- rental_id, inventory_id
+select * from payment; -- rental_id
+select * from inventory; -- inventory_id, film_id
+
+-- diplays titles and rental duration in desc order--
+select title, rental_duration 
+from film 
+order by rental_duration desc; 
+
+-- 7f. Write a query to display how much business, in dollars, each store brought in.
+select * from store; -- store_id, address_id
+select * from film; -- rental_duration * -- rental_rate
+select * from inventory; -- inventory_id, film_id, store_id
+select * from payment; -- staff_id, amount
+select * from staff; -- staff_id, store_id
+
+select store_id, sum(amount) as store_total
+from payment as p
+join staff as s
+on p.staff_id = s.staff_id
+group by p.staff_id
+order by store_total desc;
+
+-- 7g. Write a query to display for each store its store ID, city, and country.
+select * from store; -- store_id, address_id
+select * from city; -- city_id, city, country_id
+select * from address; -- address_id, city_id
+select * from country;-- has country_id, country
+
+select store_id, city, country
+from store as s
+inner join address as a
+on s.address_id = a.address_id
+inner join city as c
+on a.city_id = c.city_id
+inner join country as co
+on c.country_id = co.country_id;
+
+-- 7h. List the top five genres in gross revenue in descending order. 
+-- (**Hint**: you may need to use the following tables: category, film_category, inventory, payment, and rental.)
+select * from category; -- category_id, name(genre)
+select * from film_category; -- category_id, film_id 
+select * from inventory; -- inventory_id, film_id
+select * from payment; -- payment_id, customer_id, staff_id, rental_id, amount
+select * from rental; -- rental_id, inventory_id, customer_id, staff_id
+
+select name, sum(amount) as gross_revenue
+from category as c
+inner join film_category as fc
+on c.category_id = fc.category_id
+inner join inventory as i
+on fc.film_id = i.film_id
+inner join rental as r
+on i.inventory_id = r.inventory_id
+inner join payment as p
+on r.rental_id = p.rental_id
+group by name
+order by gross_revenue desc limit 5;
+
+-- 8a. In your new role as an executive, you would like to have an easy way of viewing the Top five genres by gross revenue. 
+-- Use the solution from the problem above to create a view. 
+-- If you haven't solved 7h, you can substitute another query to create a view.
+
+-- create a new table based on the query from 7h
+create table top_five (
+  id integer(11) auto_increment not null,
+  name varchar(30),
+  gross_revenue decimal(10,2),
+  primary key (id)
+);
+
+insert into top_five (name, gross_revenue)
+values ('Sports', 5314.21), ('Sci-Fi', 4756.98), ('Animation', 4656.30), ('Drama', 4587.39), ('Comedy', 4383.58);
+
+select * from top_five;
+
+-- create view
+create view view_top_five as
+select name, gross_revenue
+from top_five;
 
 
+-- 8b. How would you display the view that you created in 8a?
+-- display view --
+select * from view_top_five;
 
 
-
-
-
-
-
-
-
+-- 8c. You find that you no longer need the view `top_five_genres`. Write a query to delete it. 
+drop view view_top_five;
