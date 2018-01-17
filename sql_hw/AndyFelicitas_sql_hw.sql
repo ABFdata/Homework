@@ -324,28 +324,17 @@ WHERE
     c.name = 'Family';
 
 -- 7e. Display the most frequently rented movies in descending order.
-SELECT 
-    *
-FROM
-    film;-- title, rental_duration, 
-SELECT 
-    *
-FROM
-    rental;-- rental_id, inventory_id
-SELECT 
-    *
-FROM
-    payment;-- rental_id
-SELECT 
-    *
-FROM
-    inventory;-- inventory_id, film_id
 
 SELECT 
-    title, rental_duration
+    f.title AS 'Movie', COUNT(r.rental_date) AS 'Times Rented'
 FROM
-    film
-ORDER BY rental_duration DESC;
+    film AS f
+        JOIN
+    inventory AS i ON i.film_id = f.film_id
+        JOIN
+    rental AS r ON r.inventory_id = i.inventory_id
+GROUP BY f.title
+ORDER BY COUNT(r.rental_date) DESC;
 
 -- 7f. Write a query to display how much business, in dollars, each store brought in.
 SELECT 
