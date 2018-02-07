@@ -45,7 +45,7 @@ def scrape():
     # surf_data["src"] = img_src #
 
     # add our src to mars data with a key of src
-    # mars_data["src"] = img_src #
+    # mars_data["src"] = img_src 
     ### ^^^ img src is not defined
     
     # visit nasa to get image 
@@ -239,26 +239,34 @@ def scrape():
     hemisphere_image_urls = [cerberus_dict, schiaparelli_dict, syrtis_dict, valles_dict]
     print(hemisphere_image_urls)
 
+    # build / store data that was scraped
 
+    # the following objects need to be displayed
+        # news_title
+        # news_p
+        # featured_image_url
+        # mars_weather
+        # df
+        # hemisphere_image_urls
 
+    # adding objects into mars_data{}
+    mars_data['news_title'] = news_title
+    mars_data['news_p'] = news_p
+    mars_data['featured_image_url'] = featured_image_url
+    mars_data['mars_weather'] = mars_weather
+    mars_data['df'] = df
+    mars_data['hemisphere_image_urls'] = hemisphere_image_urls
 
+    # not sure if i need this, but copied from scrape surf
+    # mars_data['report'] = build_report(mars_report)
 
-    # create soup object from html
-    # forecast_soup = BeautifulSoup(html, "html.parser") # 
-    # report = forecast_soup.find(class_="forecast-outlook") #
-    # surf_report = report.find_all("p") #
-    
-    # add it to our surf data dict
-    # surf_data["report"] = build_report(surf_report) #
-    
-    # return our surf data dict
-    # return surf_data #
+    # return mars_data dict
+    return mars_data
 
-
-# helper function to build surf report
-# def build_report(surf_report): #
-#     final_report = "" #
-#     for p in surf_report: #
-#         final_report += " " + p.get_text() #
+# helper function to build mars report
+# def build_report(mars_report): 
+#     final_report = "" 
+#     for p in mars_report: 
+#         final_report += " " + p.get_text()
 #         print(final_report) #
 #     return final_report #

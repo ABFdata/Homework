@@ -33,11 +33,13 @@ results = soup.find_all(class_="content_title")
 # this prints the latest article title
 news_title = results[0].text.strip()
 print(news_title)
+print('--------------------')
 
 # print the news_p headline
 article_teasers = soup.find_all('div', class_="rollover_description_inner")
 news_p = article_teasers[0].text.strip()
 print(news_p)
+print('--------------------')
 
    
 # add our src to mars data with a key of src
@@ -72,6 +74,7 @@ featured_image = full.a['data-fancybox-href']
 main_url = 'https://www.jpl.nasa.gov'
 featured_image_url = main_url + featured_image  
 print(featured_image_url)
+print('--------------------')
 
 # mars facts
 facts_url = "https://space-facts.com/mars/"
@@ -90,6 +93,7 @@ initial_df = tables[0]
 initial_df.columns = ['description', 'value']
 df = initial_df.set_index('description')
 print(df)
+print('--------------------')
 
 # mars_weather
 # tweepy dependencies
@@ -125,11 +129,13 @@ for tweet in public_tweets:
     # store tweet in mars_weather
     mars_list.append(tweet["text"])
 
-print('----------')
+print('--------------------')
 
 # latest weather report 
 mars_weather = mars_list[1]
 print(mars_weather)
+
+print('--------------------')
 
 # mars_hemispheres
 
@@ -166,25 +172,25 @@ for result in results_hemi:
         hemi_click(title)
         img_url_0 = browser.windows[0].next.url
         print(img_url_0)
-        print('----------')
+        print('--------------------')
         
     elif title == "Schiaparelli Hemisphere Enhanced":
         hemi_click(title)
         img_url = browser.windows[1].next.url
         print(img_url)
-        print('----------')
+        print('--------------------')
     
     elif title == "Syrtis Major Hemisphere Enhanced":
         hemi_click(title)
         img_url_2 = browser.windows[2].next.url
         print(img_url_2)
-        print('----------')
+        print('--------------------')
     
     else:
         hemi_click(title) 
         img_url_3 = browser.windows[3].next.url
         print(img_url_3)
-        print('----------')
+        print('--------------------')
 
 # create empty list and append hemispheres to all hemi
 all_hemi = []
@@ -192,69 +198,98 @@ for result in results_hemi:
     t = result.find('h3').text
     all_hemi.append(t)
 print(all_hemi)
+print('--------------------')
 
 # Cerberus
 cerberus = all_hemi[0].rsplit(' ',1)[0]
 print(cerberus)
+print('--------------------')
 
 # Schiaparelli
 schiaparelli = all_hemi[1].rsplit(' ',1)[0]
 print(schiaparelli)
+print('--------------------')
 
 # Syrtis
 syrtis = all_hemi[2].rsplit(' ',1)[0]
 print(syrtis)
+print('--------------------')
 
 # Valles
 valles = all_hemi[3].rsplit(' ',1)[0]
 print(valles)
+print('--------------------')
 
 img_url_1 = 'https://astropedia.astrogeology.usgs.gov/download/Mars/Viking/schiaparelli_enhanced.tif/full.jpg'
 
 # print image links
 print(img_url_0)
+print('--------------------')
 print(img_url_1)
+print('--------------------')
 print(img_url_2)
+print('--------------------')
 print(img_url_3)
+print('--------------------')
 
 # create dictionary for all_hemi titles
 cerberus_dict = {'title': cerberus, 'img_url': img_url_0}
 print(cerberus_dict)
+print('--------------------')
 
 schiaparelli_dict = {'title': schiaparelli,'img_url': img_url_1}
 print(schiaparelli_dict)
+print('--------------------')
 
 syrtis_dict = {'title': syrtis,'img_url': img_url_2}
 print(syrtis_dict)
+print('--------------------')
 
 valles_dict = {'title': valles,'img_url': img_url_3}
 print(valles_dict)
 
-print('----------')
+print('--------------------')
 
 hemisphere_image_urls = [cerberus_dict, schiaparelli_dict, syrtis_dict, valles_dict]
 print(hemisphere_image_urls)
+print('--------------------')
+
+# build / store data that was scraped
+
+# the following objects need to be displayed
+    # news_title
+    # news_p
+    # featured_image_url
+    # mars_weather
+    # df
+    # hemisphere_image_urls
+
+# adding objects into mars_data{}
+mars_data['news_title'] = news_title
+mars_data['news_p'] = news_p
+mars_data['featured_image_url'] = featured_image_url
+mars_data['mars_weather'] = mars_weather
+mars_data['df'] = df
+mars_data['hemisphere_image_urls'] = hemisphere_image_urls
+
+# not sure if i need this, but copied from scrape surf
+# mars_data['report'] = build_report(mars_report)
 
 
+# return mars_data dict
+print(mars_data)
+print('--------------------')
 
-
-
-    # create soup object from html
-    # forecast_soup = BeautifulSoup(html, "html.parser") # 
-    # report = forecast_soup.find(class_="forecast-outlook") #
-    # surf_report = report.find_all("p") #
-    
-    # add it to our surf data dict
-    # surf_data["report"] = build_report(surf_report) #
-    
-    # return our surf data dict
-    # return surf_data #
-
-
-# helper function to build surf report
-# def build_report(surf_report): #
-#     final_report = "" #
-#     for p in surf_report: #
-#         final_report += " " + p.get_text() #
+# helper function to build mars report
+# def build_report(mars_report): 
+#     final_report = "" 
+#     for p in mars_report: 
+#         final_report += " " + p.get_text()
 #         print(final_report) #
 #     return final_report #
+
+
+
+
+   
+
