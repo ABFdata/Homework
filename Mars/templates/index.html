@@ -18,17 +18,77 @@
       
     <!-- mars data -->
     <div class="row">
-      <div class="col-md-8 col-md-offset-2">
-        <h2>Latest Mars News</h2>
+      <div class="col-md-6 col-md-offset-2">
+        <h1>Latest Mars News</h1>
+        <br>
         <h3 class="heading">{{mars.title}}</h3>
         <p>{{mars.news}}</p>
-        
+        <br>
         <h3>Featured Mars Image</h3>
-        <img src= {{ mars.src }} width: 50% />
+        <img src= {{ mars.src }} style="width:700px;height:700px;"/>
         <p>{{ mars.report }}</p>
+      </div>
+      <!-- <style>div.relative 
+      h4{
+        position: relative;
+        right: 30px;
+        border: 2px  #565658;
+        border-style: solid;
+        border-width: thin;
+        } -->
+      <!-- </style> -->
+      <div class="relative; col-md-2">
+        <br>
+        <h4>Current Weather on Mars</h4>
+        <p>{{mars.weather}}</p>
+        <a class="twitter-timeline"
+        href="https://twitter.com/MarsWxReport"
+        data-chrome="nofooter noborders">
+        Tweets by @MarsWxReport</a>
+        <br>
+        <br>
+        <br>
+        <br>
+        <h4>Mars Facts</h4>
+        <table class="Table">{{mars.MarsFacts}}</table>
       </div>
     </div>
   </div>
+<hr>
+  <div class="container">
+    <div class="col-md-12 col-md-offset-0">
+      <h2 class="text-center">Mars Hemispheres</h2>
+        <br>
+          <div class="classWithPad">
+            <!-- <p class="text-left">{mars.cer}</p> -->
+            <img src= {{ mars.cerberus}} style="width:500px;height:500px;"/>
+            <!-- <p class="text-right">{mars.sch}</p> -->
+            <img src= {{ mars.schiaparelli}} style="width:500px;height:500px;"/>
+       <br><br>   
+            <!-- <p class="text-left">{mars.syr}</p> -->
+            <img src= {{ mars.syrtis}} style="width:500px;height:500px;"/>
+            <!-- <p class="text-right">{mars.val}</p> -->
+            <img src= {{ mars.valles}} style="width:500px;height:500px;"/>
+          </div>
+    </div>
+  </div>
+
+  <hr>
+  <div class="container">
+    <div class="col-md-12 col-md-offset-0">
+      <div class = "mx-auto"></div>
+        <h2 class="text-center">Test</h2>
+          <br>
+            <div class="classWithPad">
+              <!-- <p class="text-left">{mars.cer}</p> -->
+              <img src= {{ mars.cerberus}} style="width:500px;height:500px;"/>
+              <!-- <p class="text-right">{mars.sch}</p> -->
+              <img src= {{ mars.schiaparelli}} style="width:500px;height:500px;"/>
+            </div>
+          <br>
+    </div>
+  </div>
+<hr>
 
 </body>
 </html>

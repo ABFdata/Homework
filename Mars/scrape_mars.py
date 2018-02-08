@@ -83,14 +83,14 @@ def scrape():
     tables = pd.read_html(facts_url)
     
     # read table in pandas
-        #initial_df = tables[0]
-        #initial_df.columns = ['description', 'value']
-        #df = initial_df.set_index('description')
+    initial_df = tables[0]
+    initial_df.columns = ['description', 'value']
+    df = initial_df.set_index('description')
    
     # create an empty list to append pandas edit table back into a list
-        #df_list =[]
-        #df_list.append(df)
-        #print(df_list)
+    df_list =[]
+    df_list.append(df)
+    print(df_list)
 
     # mars_weather
     # tweepy dependencies
@@ -129,7 +129,7 @@ def scrape():
     print('----------')
 
     # latest weather report 
-    mars_weather = mars_list[1]
+    mars_weather = mars_list[0]
     print(mars_weather)
 
     # mars_hemispheres
@@ -246,13 +246,22 @@ def scrape():
         # df
         # hemisphere_image_urls
 
-    # adding objects into mars_data{}
+    # adding objects into mars{}
     mars['title'] = news_title
     mars['news'] = news_p
     mars['src'] = featured_image_url
     mars['weather'] = mars_weather
-    #mars['MarsFacts'] = df_list
+    mars['MarsFacts'] = df_list
     mars['srcimages'] = hemisphere_image_urls
+    mars['cerberus'] = img_url_0
+    mars['schiaparelli'] = img_url_1
+    mars['syrtis'] = img_url_2
+    mars['valles'] = img_url_3
+
+    mars['cer'] = cerberus
+    mars['sch'] = schiaparelli
+    mars['syr'] = syrtis
+    mars['val'] = valles
 
     # not sure if i need this, but copied from scrape surf
     # mars_data['report'] = build_report(mars_report)
