@@ -8,9 +8,9 @@ mongo = PyMongo(app)
 
 @app.route('/') 
 def index(): 
-    mars = mongo.db.mars.find_one()#
+    mars = mongo.db.mars.find_one()
     # this line just prints it in the console
-    print(mars)
+    # print(mars)
     return render_template('index.html', mars=mars) 
 
 

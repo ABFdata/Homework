@@ -19,8 +19,12 @@
     <!-- mars data -->
     <div class="row">
       <div class="col-md-8 col-md-offset-2">
-        <img src= {{ mars.src }} width: 50% />
+        <h2>Latest Mars News</h2>
+        <h3 class="heading">{{mars.title}}</h3>
+        <p>{{mars.news}}</p>
+        
         <h3>Featured Mars Image</h3>
+        <img src= {{ mars.src }} width: 50% />
         <p>{{ mars.report }}</p>
       </div>
     </div>
