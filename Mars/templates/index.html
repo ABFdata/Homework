@@ -26,7 +26,7 @@
         <br>
         <h3>Featured Mars Image</h3>
         <img src= {{ mars.src }} style="width:700px;height:700px;"/>
-        <p>{{ mars.report }}</p>
+        <!-- <p>{{ mars.report }}</p> -->
       </div>
       <!-- <style>div.relative 
       h4{
@@ -50,7 +50,7 @@
         <br>
         <br>
         <h4>Mars Facts</h4>
-        <table class="Table">{{mars.MarsFacts}}</table>
+        <table class="Table">{{mars.MarsFacts|safe}}</table>
       </div>
     </div>
   </div>

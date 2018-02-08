@@ -86,11 +86,14 @@ def scrape():
     initial_df = tables[0]
     initial_df.columns = ['description', 'value']
     df = initial_df.set_index('description')
+
+    # convert df to html
+    df_format = df.to_html(bold_rows=True)
    
-    # create an empty list to append pandas edit table back into a list
-    df_list =[]
-    df_list.append(df)
-    print(df_list)
+    # # create an empty list to append pandas edit table back into a list
+    # df_list =[]
+    # df_list.append(df)
+    # print(df_list)
 
     # mars_weather
     # tweepy dependencies
@@ -251,7 +254,7 @@ def scrape():
     mars['news'] = news_p
     mars['src'] = featured_image_url
     mars['weather'] = mars_weather
-    mars['MarsFacts'] = df_list
+    mars['MarsFacts'] = df_format
     mars['srcimages'] = hemisphere_image_urls
     mars['cerberus'] = img_url_0
     mars['schiaparelli'] = img_url_1
