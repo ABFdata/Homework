@@ -1,19 +1,18 @@
 // Get references to the tbody element, input field and button
 var $tbody = document.querySelector("tbody");
-var $datetimeinput = document.querySelector("#datetime");
+var $datetimeInput = document.querySelector("#datetime");
 var $searchBtn = document.querySelector("#search");
 
 // Add an event listener to the searchButton, call handleSearchButtonClick when clicked
 $searchBtn.addEventListener("click", handleSearchButtonClick);
 
-// Set filteredDate to dateData initially
-// data is the data.js file
+// Set filteredDate to dateData initially // data is the data.js file
 var filteredDate = data;
 
 // renderTable renders the filteredDate to tbody
 function renderTable() {
     $tbody.innerHTML = "";
-    for (var i = 0; i <filteredDate.length; i++) {
+    for (var i = 0; i < filteredDate.length; i++) {
         // Get the current date object and its fields
         var dateTime = filteredDate[i];
         var fields = Object.keys(dateTime);
@@ -28,19 +27,19 @@ function renderTable() {
     }
 }
 
-// function handleSearchButtonClick() {
+function handleSearchButtonClick() {
     // Format the user's search by removing leading and trailing whitespace, lowercase the string
-    // var filterDateFrmt = $datetimeinput.value.trim().toLowerCase();
+    var filterDateFrmt = $datetimeinput.value.trim().toLowerCase();
   
     // Set filteredDate to an array of all dates whose "datetime" matches the filter
-    // filteredDate = data.filter(function(dateTime) {
-    //   var addressState = dateTime.state.toLowerCase();
+    filteredDate = data.filter(function(dateTime) {
+       var dateState = dateTime.state.toLowerCase();
   
-    //   // If true, add the address to the filteredAddresses, otherwise don't add it to filteredAddresses
-    //   return addressState === filterState;
-    // });
+        // If true, add the date to the filteredDate, otherwise don't add it to filteredDate
+        return dateState === filterDateFrmt;
+    });
     renderTable();
-  //}
+  }
   
   // Render the table for the first time on page load
   renderTable();
