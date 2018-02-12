@@ -32,16 +32,16 @@ function renderTable() {
 function handleSearchButtonClick() {
     // Format the user's search by removing leading and trailing whitespace, lowercase the string
     var filterState = $stateInput.value.trim().toLowerCase();
-    //var filterDate = $datetimeInput.value //.trim();
+    var filterDate = $datetimeInput.value;
     var filterCity = $cityInput.value.trim().toLowerCase();
     
   
     // Set filteredDate to an array of all dates whose "datetime" matches the filter
     filteredDate = data.filter(function(dateTime) {
        var dateState = dateTime.state.substring(0, filterState.length).toLowerCase();
-       //var dateDate = dateTime.date
+       var dateDate = dateTime.datetime;
        var dateCity = dateTime.city.substring(0, filterCity.length).toLowerCase();
-       if (dateState === filterState && dateCity === filterCity) {
+       if (dateState === filterState && dateCity === filterCity && dateDate === filterDate) {
             return true;
         }
         return false;
