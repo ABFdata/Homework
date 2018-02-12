@@ -1,8 +1,6 @@
 // Get references to the tbody element, input field and button
 var $tbody = document.querySelector("tbody");
 var $datetimeInput = document.querySelector("#datetime");
-var $cityInput = document.querySelector("#city");
-var $stateInput = document.querySelector("#state");
 var $searchBtn = document.querySelector("#search");
 
 // Add an event listener to the searchButton, call handleSearchButtonClick when clicked
@@ -31,25 +29,20 @@ function renderTable() {
 
 function handleSearchButtonClick() {
     // Format the user's search by removing leading and trailing whitespace, lowercase the string
-    var filterState = $stateInput.value.trim().toLowerCase();
-    //var filterDate = $datetimeInput.value //.trim();
-    var filterCity = $cityInput.value.trim().toLowerCase();
+    var filterDate = $datetimeInput;
     
   
     // Set filteredDate to an array of all dates whose "datetime" matches the filter
     filteredDate = data.filter(function(dateTime) {
-       var dateState = dateTime.state.substring(0, filterState.length).toLowerCase();
-       //var dateDate = dateTime.date
-       var dateCity = dateTime.city.substring(0, filterCity.length).toLowerCase();
-       if (dateState === filterState && dateCity === filterCity) {
-            return true;
-        }
-        return false;
+       var dateDate = dateTime.date;
+    //    if (dateState === filterState && dateDate === filterDate) {
+    //        return true;
+
+    //    }
+    //    return false;
 
        // If true, add the date to the filteredDate, otherwise don't add it to filteredDate
-        //return dateState === filterState;
-        //return dateDate === filterDate;
-        //return dateCity === filterCity;
+        return dateDate === filterDate;
     });
     renderTable();
   }
