@@ -8,8 +8,12 @@ var $countryInput = document.querySelector("#country");
 var $shapeInput = document.querySelector("#shape");
 var $searchBtn = document.querySelector("#search");
 
+
 // Add an event listener to the searchButton, call handleSearchButtonClick when clicked
-// $searchBtn.addEventListener("click", handleSearchButtonClick);
+$searchBtn.addEventListener("click", handleSearchButtonClick);
+
+// Add event listener to the button, call handleButtonClick when clicked
+$loadMoreBtn.addEventListener("click", handleButtonClick);
 
 // Set filteredUFOData to dataSet initially - dataset is json object in data.js
 var filteredUFOData = dataSet;
@@ -38,8 +42,30 @@ function renderTableSection() {
     }
   }
 
-// Add event listener to the button, call handleButtonClick when clicked
-$loadMoreBtn.addEventListener("click", handleButtonClick);
+function handleSearchButtonClick() {
+    // Format the user's search by removing leading and trailing whitespace, lowercase the string
+    var filterDatetime = $datetimeInput.value;
+    var filterCity = $cityInput.value.trim().toLowerCase(); 
+    var filterState = $stateInput.value.trim().toLowerCase();
+    var filterCountry = $countryInput.value.trim().toLowerCase();
+    var filterShape = $shapeInput.value.trim().toLowerCase();
+  
+    // Set filteredUFOData to an array of all addresses whose "state" matches the filter
+    filteredUFOData = dataSet.filter(function(UFOdata) {
+      var UFOdatetime = UFOdata.datetime;
+      var UFOcity = UFOdata.city.substring(0, filterCity.length).toLowerCase();
+      var UFOstate = UFOdata.state.substring(0, filterState.length).toLowerCase();
+      var UFOcountry = UFOdata.country.substring(0, filterCountry.length).toLowerCase();
+      var UFOshape = UFOdata.shape.substring(0, filterShape.length).toLowerCase();
+      if (UFOdatetime === filterDatetime && UFOcity === filterCity && UFOstate === filterState
+      && UFOcountry === filterCountry && UFOshape === filterShape) {
+          return true;
+      }
+      return false;
+  
+    });
+    renderTableSection();
+  }
 
 function handleButtonClick(){
     //Increase startingIndex by resultsPerPage, render next section of the table
