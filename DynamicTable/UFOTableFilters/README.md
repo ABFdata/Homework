@@ -16,6 +16,10 @@ Level 3: [Pagination](https://github.com/ABFdata/Homework/blob/master/DynamicTab
 
 Level 4: [Multi Category Search Pagination](https://github.com/ABFdata/Homework/blob/master/DynamicTable/UFOTableFilters/4multi_pagination.html) This table incorporates one search bar that allows you to filter by all the categories. The table also incorporates pagination, with the first 50 rows of data. 
 
+<hr>
+
+Level 5: [Jquery Bootstrap Data Table](https://github.com/ABFdata/Homework/blob/master/DynamicTable/UFOTableFilters/6jquery_table.html) This table incorporates the Jquery Bootstrap plugin for Data Tables. This table represents the <strong>final table</strong> for this assignment.
+
 
 ```python
 
