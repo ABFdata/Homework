@@ -19,7 +19,7 @@
 * Web Dashboards through [html and css](https://github.com/ABFdata/ABFdashboard)
 * [Web scraping](https://github.com/ABFdata/Homework/tree/master/Mars) with Beautiful Soup, Splinter & Selenium
 * Non relational Database management with [MongoDB, MongoCompass & PyMongo](https://github.com/ABFdata/Homework/tree/master/Mars)
-* Dynamic Web Development through [Javascript](https://github.com/ABFdata/Homework/tree/master/DynamicTable) DOM Manipulation
+* Dynamic Web Development through [Javascript](https://github.com/ABFdata/Homework/tree/master/DynamicTable/UFOTableFilters) DOM Manipulation
 
 
 ```python
