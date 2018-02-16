@@ -3,7 +3,7 @@
 
 # Background
 
-** For this project I created several dynamic tables to display eye-witness reports of UFO sightings. The following tables can be sorted as such:**
+#### For this project I created several dynamic tables to display eye-witness reports of UFO sightings. The following tables can be sorted as such:
 
 Level 1: [Automatic Table](https://github.com/ABFdata/Homework/blob/master/DynamicTable/UFOTableFilters/1date_index.html) and Date Search. This table allows you to filter the table by date. 
     
