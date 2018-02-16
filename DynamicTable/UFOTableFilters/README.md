@@ -20,6 +20,8 @@ Level 4: [Multi Category Search Pagination](https://github.com/ABFdata/Homework/
 
 Level 5: [Jquery Bootstrap Data Table](https://github.com/ABFdata/Homework/blob/master/DynamicTable/UFOTableFilters/6jquery_table.html) This table incorporates the Jquery Bootstrap plugin for Data Tables. This table represents the <strong>final table</strong> for this assignment.
 
+![title](ufo_table_jquery_style.png)
+
 
 ```python
 
