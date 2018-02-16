@@ -1,4 +1,6 @@
 
+![title](header.png)
+
 # Unit 14 | JavaScript and DOM Manipulation
 
 # Background
