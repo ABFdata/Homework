@@ -61,6 +61,32 @@ bbb_meta_clean = bbb_meta_df[['AGE', 'BBTYPE', 'ETHNICITY','GENDER', 'LOCATION',
 # convert bbb_meta_clean to a dictionary
 bbb_meta_dict = bbb_meta_clean.to_dict(orient='records')
 
+# read in otu csv
+otu_df1 = pd.read_csv('belly_button_biodiversity_otu_id.csv',dtype=object)
+
+# sort otu_df1 to DESC values
+otu_df1_sort = otu_df1.sort_values('otu_id', ascending=False)
+
+# sort out otu from otu_df1
+otu_df = otu_df1_sort[['otu_id']]
+
+# sets otu_id in otu_df to a new list called value
+# we will add this list to our dictionary - sample_dict
+value = otu_df['otu_id'].tolist()
+
+# this strips the quotes from value
+value = list(map(int, value))
+
+# sorts the SAMPLE ID column from bbb_meta_df
+sample_sort = bbb_meta_df.sort_values('SAMPLEID', ascending=False)
+
+# creates a descending list of SAMPLEID
+sample_value = sample_sort['SAMPLEID'].tolist()
+
+# dictionary {otu_ids: [1,2,3]}
+# the above is the kind of dictionary we want to make
+sample_dict = {'otu_ids': value, 'sample_values': sample_value}
+
 # flask set up
 app = Flask(__name__, static_folder="static")
 
@@ -102,6 +128,16 @@ def meta_func():
 
 # # fifth route returns an integer value for the weekly washing frequency 'WFREQ'
 # @app.route('w/freq/<sample>')
+
+# sixth route reutrns a list of dictionaries containing sorted lists for otu_ids and sample_values
+@app.route('/samples')
+def d_func():
+
+    sample_dict
+
+    return jsonify(sample_dict)
+
+
 
 if __name__ == "__main__":
     app.run(debug=True)
