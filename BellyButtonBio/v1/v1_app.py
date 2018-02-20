@@ -54,9 +54,12 @@ del sample_names_list[0]
 # use pandas to read Belly_Button_Biodiversity_Metadata.csv
 bbb_meta_df = pd.read_csv('Belly_Button_Biodiversity_Metadata.csv')
 
-# convert bbb_meta_df to json
-bbb_meta_json = bbb_meta_df.to_json
-# print(bbb_meta_json)
+# create new df from bbb_meta_df with the following columns:
+# AGE, BBTYPE, ETHNICITY, GENDER, LOCATION, SAMPLEID
+bbb_meta_clean = bbb_meta_df[['AGE', 'BBTYPE', 'ETHNICITY','GENDER', 'LOCATION', 'SAMPLEID']]
+
+# convert bbb_meta_clean to a dictionary
+bbb_meta_dict = bbb_meta_clean.to_dict(orient='records')
 
 # flask set up
 app = Flask(__name__, static_folder="static")
@@ -91,8 +94,9 @@ def otu_func():
 def meta_func():
     """MetaData for a given sample."""
 
-    bbb_meta_json
-    return jsonify(bbb_meta_json)
+    bbb_meta_dict
+
+    return jsonify(bbb_meta_dict)
 
 
 
