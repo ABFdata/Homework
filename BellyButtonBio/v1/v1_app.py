@@ -64,6 +64,15 @@ bbb_meta_dict = bbb_meta_clean.to_dict(orient='records')
 # returns an integer value for the weekly washing frequency 'WFREQ'
 freq_df = bbb_meta_df[['SAMPLEID', 'WFREQ']]
 
+# create new object with just SAMPLEID col
+samplid = freq_df['SAMPLEID'].tolist()
+
+# create an empty to store the concat BB + samplid
+s_format = []
+# loop through list and append
+for i in range(len(samplid)):
+    s_format.append('BB_' + str(samplid[i]))
+
 # takes the WFREQ col and turns it into a list
 wfreq = freq_df['WFREQ'].tolist()
 
@@ -135,17 +144,17 @@ def meta_func():
 # fifth route returns an integer value for the weekly washing frequency 'WFREQ'
 @app.route('/freq')
 def freq_func():
-
-    wfreq 
-
+    wfreq
+    #s_format 
     return jsonify(wfreq)
+    #return jsonify(s_format)
 
 # sixth route reutrns a list of dictionaries containing sorted lists for otu_ids and sample_values
 @app.route('/samples')
 def d_func():
-
+    
     sample_dict
-
+    
     return jsonify(sample_dict)
 
 
