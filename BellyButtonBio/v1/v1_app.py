@@ -61,6 +61,12 @@ bbb_meta_clean = bbb_meta_df[['AGE', 'BBTYPE', 'ETHNICITY','GENDER', 'LOCATION',
 # convert bbb_meta_clean to a dictionary
 bbb_meta_dict = bbb_meta_clean.to_dict(orient='records')
 
+# returns an integer value for the weekly washing frequency 'WFREQ'
+freq_df = bbb_meta_df[['SAMPLEID', 'WFREQ']]
+
+# takes the WFREQ col and turns it into a list
+wfreq = freq_df['WFREQ'].tolist()
+
 # read in otu csv
 otu_df1 = pd.read_csv('belly_button_biodiversity_otu_id.csv',dtype=object)
 
@@ -126,8 +132,13 @@ def meta_func():
 
 
 
-# # fifth route returns an integer value for the weekly washing frequency 'WFREQ'
-# @app.route('w/freq/<sample>')
+# fifth route returns an integer value for the weekly washing frequency 'WFREQ'
+@app.route('/freq')
+def freq_func():
+
+    wfreq 
+
+    return jsonify(wfreq)
 
 # sixth route reutrns a list of dictionaries containing sorted lists for otu_ids and sample_values
 @app.route('/samples')
