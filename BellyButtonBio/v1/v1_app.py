@@ -110,7 +110,8 @@ app = Flask(__name__, static_folder="static")
 # first route returns to the dashboard home page
 @app.route("/")
 def index():
-    return render_template("index.html")
+    # return render_template("index.html")
+    return render_template("index.html", sample_names_list=sample_names_list)
 
 # # second route returns a list of sample names
 @app.route("/names")
@@ -119,6 +120,9 @@ def names():
     sample_names_list
 
     return jsonify(sample_names_list)
+    
+    # this line allows you to access the list sample_names_list in index.html
+    # return render_template("index.html", sample_names_list=sample_names_list)
 
 
 # third route returns a list of OTU descriptions
@@ -131,33 +135,32 @@ def otu_func():
     return jsonify(otu_results_list)
 
 # fourth route returns a json dictionary of sample metadata
-@app.route("/metadata")
-def meta_func():
-    """MetaData for a given sample."""
-
+# @app.route("/metadata")
+@app.route('/metadata/<sample>')
+# here we have to def a func for <sample>
+def show_meta_sample(sample):
+    # return 'Metadata %s' % sample
     bbb_meta_dict
 
     return jsonify(bbb_meta_dict)
 
-
-
 # fifth route returns an integer value for the weekly washing frequency 'WFREQ'
-@app.route('/freq')
-def freq_func():
+# @app.route('/freq')
+@app.route('/wfreq/<sample>')
+def show_freq_sample(sample):
     wfreq
-    #s_format 
-    return jsonify(wfreq)
-    #return jsonify(s_format)
 
+    return jsonify(wfreq)
+    
 # sixth route reutrns a list of dictionaries containing sorted lists for otu_ids and sample_values
-@app.route('/samples')
-def d_func():
+# @app.route('/samples')
+@app.route('/samples/<sample>')
+# here we have to def a func for sample
+def show_samp(sample):
     
     sample_dict
     
     return jsonify(sample_dict)
-
-
 
 if __name__ == "__main__":
     app.run(debug=True)
