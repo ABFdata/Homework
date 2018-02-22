@@ -98,10 +98,7 @@ def otu_func():
 @app.route('/metadata/<sample>')
 # here we have to def a func for <sample>
 def show_meta_sample(sample = 'BB_940'):
-    # return 'Metadata %s' % sample
-    # bbb_meta_dict
-    # return jsonify(bbb_meta_dict)
-
+    
     # sets index to SAMPLEID
     bbb_meta_clean2 = bbb_meta_clean.set_index('SAMPLEID')
 
