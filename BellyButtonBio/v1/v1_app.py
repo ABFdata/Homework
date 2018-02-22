@@ -69,12 +69,12 @@ app = Flask(__name__, static_folder="static")
 # first route returns to the dashboard home page
 @app.route("/")
 def index():
-    # return render_template("index.html")
+    
     return render_template("index.html", sample_names_list=sample_names_list)
-    return render_template("index_html", otu_results_list=otu_results_list)
-    return render_template("index_html", bbb_meta_dict=bbb_meta_dict)
-    return render_template("index_html", wfreq=wfreq)
-    return render_template("index_html", sample_dict=sample_dict)
+    # return render_template("index.html", otu_results_list=otu_results_list)
+    # return render_template("index.html", bbb_meta_dict=bbb_meta_dict)
+    # return render_template("index.html", wfreq=wfreq)
+    # return render_template("index.html", sample_dict=sample_dict)
 
 
 # # second route returns a list of sample names
@@ -98,6 +98,9 @@ def otu_func():
 @app.route('/metadata/<sample>')
 # here we have to def a func for <sample>
 def show_meta_sample(sample = 'BB_940'):
+
+    # this return line will bring us back to the dashboard
+    # return render_template("index.html", sample=sample)
     
     # sets index to SAMPLEID
     bbb_meta_clean2 = bbb_meta_clean.set_index('SAMPLEID')
@@ -111,7 +114,9 @@ def show_meta_sample(sample = 'BB_940'):
     # create a new object and use loc
     bbb_ID = bbb_meta_clean2.loc[sampleID]
 
-    #  set SAMPLEID = sampleID
+    #  set SAMPLEID = sampleID 
+    # this line prints back the SAMPLEID into the Dictionary so it 
+    # doesnt show up as a NaN value
     bbb_ID['SAMPLEID'] = sampleID
 
     # results 

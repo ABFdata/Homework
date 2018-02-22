@@ -42,8 +42,6 @@
                         {% for i in sample_names_list %}
                             <option value = {{ i }}>{{ i }}</option>
                         {% endfor %}
-                    <!-- <option value="BB_940">BB_940</option>
-                         <option value="BB_941">BB_941</option> -->
     
                 </select>
                 
@@ -52,7 +50,7 @@
     </div>
 
     <!-- Pie Chart TEST -->
-    <div id="pie"></div>
+    <!-- <div id="pie"></div>
     <script>
         Plotly.d3.json('/samples/<sample>', function(error, data){
             if (error) return console.warn(error);
@@ -65,7 +63,7 @@
             
         })
     
-    </script>
+    </script> -->
 
     <!-- END Pie Chart TEST -->
 
@@ -75,10 +73,40 @@
     <div class="container">
         <div class ="col-md-6">
             <div id="plot">
+                {% if sample == sample %}
+                <script>
+                    var url = "/samples/<sample>";
+                    function buildPieChart() {
+                        Plotly.d3.json(url, function (error, response) {
+                            console.log(response);
+
+                            var trace1 = {
+                                type: "pie",
+                                //mode: ""
+                                name: "Top 10 Samples",
+                                labels: response.map(url => data.otu_ids),
+                                values: response.map(url => data.sample_values),
+
+
+                            };
+
+                            Plotly.newPlot("plot", data, layout);
+                        });
+                    }
+
+                    buildPieChart();
+
+                </script>
+
+                {% else %}
+                    <p >Please select a SAMPLEID</p>
+                {% endif %}
 
             </div>
         </div>
     </div>
+
+    <!-- END PIE CHART TEST -->
     
    
     <!-- Scripts -->
