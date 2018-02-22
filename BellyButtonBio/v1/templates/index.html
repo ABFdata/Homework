@@ -51,6 +51,24 @@
         </div>
     </div>
 
+    <!-- Pie Chart TEST -->
+    <div id="pie"></div>
+    <script>
+        Plotly.d3.json('/samples/<sample>', function(error, data){
+            if (error) return console.warn(error);
+
+            var layout = {
+                title: "Top 10 Samples Pie Chart"}
+
+            var PIE = document.getElementById('pie');
+            Plotly.plot(PIE, data, layout);
+            
+        })
+    
+    </script>
+
+    <!-- END Pie Chart TEST -->
+
   
 
     <!-- Pie Chart -->
