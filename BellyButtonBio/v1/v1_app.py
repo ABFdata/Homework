@@ -126,10 +126,6 @@ def names():
 
     return jsonify(sample_names_list)
     
-    # this line allows you to access the list sample_names_list in index.html
-    # return render_template("index.html", sample_names_list=sample_names_list)
-
-
 # third route returns a list of OTU descriptions
 @app.route("/otu")
 def otu_func():
@@ -140,7 +136,6 @@ def otu_func():
     return jsonify(otu_results_list)
 
 # fourth route returns a json dictionary of sample metadata
-# @app.route("/metadata")
 @app.route('/metadata/<sample>')
 # here we have to def a func for <sample>
 def show_meta_sample(sample = 'BB_940'):
