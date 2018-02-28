@@ -179,8 +179,7 @@ var toolTip = d3
       .attr("y", 0 - margin.left + 40)
       .attr("x", 0 - (height / 2))
       .attr("dy", "1em")
-      .attr("class", "axis-text")
-      .attr("data-axis-name", "poorHealth")
+      .attr("class", "axisText")
       .text("Age 60+ with Poor Health (%)");
 
 // Append x-axis labels
@@ -188,7 +187,7 @@ var toolTip = d3
     .append("text")
     .attr(
         "transform", 
-        "translate(" + (width / 2) + " ," + (height + margin.top + 20) + ")"
+        "translate(" + (width / 2) + " ," + (height + margin.top + 30) + ")"
     )
     // This axis label is active by default
     .attr("class", "axis-text active")
@@ -204,7 +203,7 @@ var toolTip = d3
     )
     // This axis label is inactive by default
     .attr("class", "axis-text inactive")
-    .attr("data-axis-name", "collegeGrad")
+    .attr("data-axis-name", "College grads")
     .text("Age 60+ college graduates (%)");
 
   // Change an axis's status from inactive to active when clicked (if it was inactive)
