@@ -4,7 +4,7 @@
 
 <hr>
 
-![title](Images/uci2.png)
+![title](Images/uci3.png)
 
 ## Homework Projects Include:
 
