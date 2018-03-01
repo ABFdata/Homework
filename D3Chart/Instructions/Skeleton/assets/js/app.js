@@ -4,8 +4,8 @@
 // =========
 // Follow your written instructions and create a scatter plot with D3.js.
 
-var svgWidth = 960;
-var svgHeight = 500;
+var svgWidth = 660; // 960
+var svgHeight = 500; // 500
 
 var margin = { top: 20, right: 40, bottom: 60, left: 100 };
 
@@ -151,16 +151,16 @@ var toolTip = d3
         return yLinearScale(data.poorHealth);
       })
       .attr("r", "5")
-      .attr("fill", "lightsteelblue")
+      .attr("fill", "lightslategray")
       .on("click", function(data) {
         toolTip.show(data);
       })
       .attr("r", "5")
-      .attr("fill", "lightsteelblue")
+      .attr("fill", "lightslategray")
       .on("mouseover", function(data) {
         toolTip.show(data);
       })
-      // onmouseout event
+      // on mouseout event
       .on("mouseout", function(data, index) {
         toolTip.hide(data);
       });
@@ -188,7 +188,7 @@ var toolTip = d3
     .append("text")
     .attr(
         "transform", 
-        "translate(" + (width / 2) + " ," + (height + margin.top + 20) + ")"
+        "translate(" + width / 2 + " ," + (height + margin.top + 12) + ")"
     )
     // This axis label is active by default
     .attr("class", "axis-text active")
@@ -200,7 +200,7 @@ var toolTip = d3
     .append("text")
     .attr(
       "transform",
-      "translate(" + width / 2 + " ," + (height + margin.top + 45) + ")"
+      "translate(" + width / 2 + " ," + (height + margin.top + 30) + ")"
     )
     // This axis label is inactive by default
     .attr("class", "axis-text inactive")
