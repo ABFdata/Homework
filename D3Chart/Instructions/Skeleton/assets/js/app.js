@@ -4,7 +4,7 @@
 // =========
 // Follow your written instructions and create a scatter plot with D3.js.
 
-var svgWidth = 660; // 960
+var svgWidth = 960; // 660
 var svgHeight = 500; // 500
 
 var margin = { top: 20, right: 40, bottom: 60, left: 100 };
@@ -188,7 +188,7 @@ var toolTip = d3
     .append("text")
     .attr(
         "transform", 
-        "translate(" + width / 2 + " ," + (height + margin.top + 12) + ")"
+        "translate(" + width / 2 + " ," + (height + margin.top + 15) + ")"
     )
     // This axis label is active by default
     .attr("class", "axis-text active")
@@ -200,7 +200,7 @@ var toolTip = d3
     .append("text")
     .attr(
       "transform",
-      "translate(" + width / 2 + " ," + (height + margin.top + 30) + ")"
+      "translate(" + width / 2 + " ," + (height + margin.top + 35) + ")"
     )
     // This axis label is inactive by default
     .attr("class", "axis-text inactive")
