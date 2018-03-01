@@ -30,3 +30,11 @@ body {
   font-size: 16px;
 }
 
+.jumbotron {
+  background-image: url(../images/news2.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: white;
+  text-align: left;
+  text-shadow: black 0.2em 0.2em 0.2em 
+}
