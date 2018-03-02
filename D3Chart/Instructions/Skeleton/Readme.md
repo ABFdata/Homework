@@ -21,7 +21,7 @@ The correlation between education and poor health was approximately .73.
 
 <hr>
 
-#### 2 Age 60+ College Graduate 
+### 2. Age 60+ College Graduate 
 
 ![chart2](assets/images/chart2.png)
 
