@@ -1,0 +1,28 @@
+/* remove default margin and padding from body */
+body {
+    padding: 0;
+    margin: 0;
+}
+  
+  /* set map, body, and html to 100% of the screen size */
+  #map,
+  body,
+  html {
+    height: 100%;
+    width: 100%;
+    font-family: "Roboto"
+}
+
+.infoHeader {
+    color: black;
+    font-family: "Roboto";
+    font-size: 16px;
+    text-align: center;
+}
+
+.description {
+    color: black;
+    font-family: "Roboto";
+    font-size: 12px;
+    text-align: center;
+}
