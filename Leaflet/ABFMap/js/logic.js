@@ -9,14 +9,12 @@ var map = L.map("map", {
 L.tileLayer("https://api.mapbox.com/styles/v1/mapbox/outdoors-v10/tiles/256/{z}/{x}/{y}?" +
     "access_token=pk.eyJ1IjoiYWJmZGF0YSIsImEiOiJjamU2aHlrZTgwMGdxMzNxa3R3OG5wZmNkIn0._No3joCSQ0ZhN2KE30LC8w").addTo(map);
 
-// Store our API endpoint inside queryUrl
-// earthquakes mag 4.5+
-// var link = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_month.geojson"
-
 // earthquakes all week data
 var link = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson"
 
-var plates_link = "js/plates.json"
+var plates_link = "../json/plates.json"
+
+var controlLayers = L.control.layers().addTo(map);
 
 
  function styleInfo(feature){
@@ -30,41 +28,20 @@ var plates_link = "js/plates.json"
     };
  };
 
-//  function getColor(magnitude){
-//      switch(true) {
-//          case magnitude > 5:
-//          return "#FF0000"; // red
-//          case magnitude > 4:
-//          return "#FFA500"; // orange
-//          case magnitude > 3:
-//          return "#FFA07A"; // lightsalmon
-//          case magnitude > 2:
-//          return "#FFFF00"; // yellow
-//          case magnitude > 1:
-//          return "#7CFC00"; // lawngreen
-//          default:
-//          return "#FFE4C4"; // bisque
-//      }
-//  };
- 
-// COLORS:
- //  #FF0000 red
- //  #FF4500 orangered
- //  #FFA500 orange  
- //  #FFFF00 yellow 
- //  #FFA07A lightsalmon  
- //  #FFDAB9 peachpuff
- //  #FFE4C4 bisque  
- //  #FFFFE0 lightyellow  
- //  #7CFC00 lawngreen  
- //  #9ACD32 yellowgreen
+// COLORS 2:
+// #DC143C crimson 	   	
+// #FF8C00 darkorange  	   
+// #00CED1 darkturquoise  	   	
+// #9400D3 darkviolet 
+//  #1E90FF dodgerblue
+// #B0E0E6 powderblue  
 
  function getColor(magnitude){
     switch(true) {
         case magnitude > 5:
         return "#DC143C"; // crimson
         case magnitude > 4:
-        return "#FF8C00"; // darkorange
+        return "#FFFF00"; // yellow
         case magnitude > 3:
         return "#00CED1"; // darkturquoise
         case magnitude > 2:
@@ -76,16 +53,8 @@ var plates_link = "js/plates.json"
     }
 };
 
-// COLORS 2:
-// #DC143C crimson 	   	
-// #FF8C00 darkorange  	   
-// #00CED1 darkturquoise  	   	
-// #9400D3 darkviolet 
-//  #1E90FF dodgerblue
-// #B0E0E6 powderblue  
-       
 
- // function get Radius
+// function get Radius
 
  function getRadius(magnitude){
     switch(true) {
@@ -104,6 +73,7 @@ var plates_link = "js/plates.json"
     }
 };
 
+
 //create a function: populateInfo to add data
 function populateInfo(feature, layer) {
     layer.bindPopup("<h1 class='infoHeader'>Weekly Earthquake Data</h1> \
@@ -112,9 +82,24 @@ function populateInfo(feature, layer) {
         
 };
 
+// function for plate color
+function colorPlates(feature){
+    return{
+        color: "#FFA500",
+        fillOpacity: 0.05
+    };
+};
+
+// function for plate popup
+function popPlate(feature, layer) {
+    layer.bindPopup("<h1 class='infoHeader'>Tectonic Plate:</h1> \
+<p class='plate'>" + feature.properties.PlateName + "</p>");
+        
+};
+
 // Here we add a GeoJSON layer to the map once the file is loaded.
 d3.json(link, function(data){
-    L.geoJson(data, {
+    var geojsonLayer1 = L.geoJson(data, {
         // We turn each feature into a circleMarker on the map.
         pointToLayer: function(feature, latlng) {
           return L.circleMarker(latlng);
@@ -126,17 +111,24 @@ d3.json(link, function(data){
         
         
       }).addTo(map);
+      controlLayers.addOverlay(geojsonLayer1, 'Weekly Earthquakes');
+
+    });
 
 // add plate layer
-
-
+d3.json(plates_link, function(data) {
+    // Creating a GeoJSON layer with the retrieved data
+    var geojsonLayer2  = L.geoJson(data, {
+        style: colorPlates,
+        // onEachFeature - popPlate to add popup for each plate
+        onEachFeature: popPlate,
+    }).addTo(map);
+    controlLayers.addOverlay(geojsonLayer2, "Fault Lines");
         
    
 
 // Setting up the legend
-
 var legend = L.control({position: 'bottomleft'});
-
 legend.onAdd = function (map) {
 
     var div = L.DomUtil.create('div', 'info legend'),

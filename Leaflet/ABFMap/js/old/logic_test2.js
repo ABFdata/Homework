@@ -9,14 +9,10 @@ var map = L.map("map", {
 L.tileLayer("https://api.mapbox.com/styles/v1/mapbox/outdoors-v10/tiles/256/{z}/{x}/{y}?" +
     "access_token=pk.eyJ1IjoiYWJmZGF0YSIsImEiOiJjamU2aHlrZTgwMGdxMzNxa3R3OG5wZmNkIn0._No3joCSQ0ZhN2KE30LC8w").addTo(map);
 
-// Store our API endpoint inside queryUrl
-// earthquakes mag 4.5+
-// var link = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_month.geojson"
-
 // earthquakes all week data
 var link = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson"
 
-var plates_link = "plates.json"
+var plates_link = "../json/plates.json"
 
 var controlLayers = L.control.layers().addTo(map);
 
@@ -58,9 +54,7 @@ var controlLayers = L.control.layers().addTo(map);
 };
 
 
-       
-
- // function get Radius
+// function get Radius
 
  function getRadius(magnitude){
     switch(true) {
@@ -103,8 +97,9 @@ d3.json(link, function(data){
       }).addTo(map);
       controlLayers.addOverlay(geojsonLayer1, 'Weekly Earthquakes');
 
-    })
-// add plate layer
+    });
+
+    // add plate layer
 
 d3.json(plates_link, function(data) {
     // Creating a GeoJSON layer with the retrieved data
