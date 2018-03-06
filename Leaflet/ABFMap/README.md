@@ -10,16 +10,28 @@ My map was created by using [Leaflet](http://leafletjs.com/), an open source jav
 
 ### Step 1: Basic Visualization
 
+These maps highlight both the tectonic plates and earthquake data for the past week on the basic outdoor overlay.
+
 ![map1](images/map1.png)
 
 ![map2](images/map2.png)
 
 ### Step 2: More Data
 
-![map3_sat_plate](images/map3_sat_plate.png)
+These maps include 3 different overlays:
+    1. Outdoor
+    2. Satellite
+    3. Gray
 
+The end user can toggle through the overlays to view different versions of the map. The user can also hide both the earthquake and plate images.
+
+#### Satellite Map
 ![map3_sat](images/map3_sat.png)
 
+#### Satellite Map with Tectonic Plate Information
+![map3_sat_plate](images/map3_sat_plate.png)
+
+#### Grayscale Map
 ![map4_gray](images/map4_gray.png)
 
 ### Step 3: Time Keeps on Ticking
