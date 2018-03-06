@@ -8,6 +8,8 @@ For this project I referenced the United States Geological Survey to create a dy
 
 My map was created by using [Leaflet](http://leafletjs.com/), an open source javascript library for mobile friendly interactive maps. I visited the [USGS GeoJSON Feed](http://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php) to obtain the most recent earthquake data which was plotted on my map. 
 
+<hr>
+
 ### Step 1: Basic Visualization
 
 These maps highlight both the tectonic plates and earthquake data for the past week on the basic outdoor overlay.
@@ -16,12 +18,14 @@ These maps highlight both the tectonic plates and earthquake data for the past w
 
 ![map2](images/map2.png)
 
+<hr>
+
 ### Step 2: More Data
 
 These maps include 3 different overlays:
-    1. Outdoor
-    2. Satellite
-    3. Gray
+1. Outdoor
+2. Satellite
+3. Gray
 
 The end user can toggle through the overlays to view different versions of the map. The user can also hide both the earthquake and plate images.
 
@@ -33,5 +37,7 @@ The end user can toggle through the overlays to view different versions of the m
 
 #### Grayscale Map
 ![map4_gray](images/map4_gray.png)
+
+<hr>
 
 ### Step 3: Time Keeps on Ticking
