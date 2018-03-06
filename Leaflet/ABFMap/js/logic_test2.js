@@ -16,7 +16,9 @@ L.tileLayer("https://api.mapbox.com/styles/v1/mapbox/outdoors-v10/tiles/256/{z}/
 // earthquakes all week data
 var link = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson"
 
-var plates_link = "js/plates.json"
+var plates_link = "plates.json"
+
+var controlLayers = L.control.layers().addTo(map);
 
 
  function styleInfo(feature){
@@ -30,34 +32,13 @@ var plates_link = "js/plates.json"
     };
  };
 
-//  function getColor(magnitude){
-//      switch(true) {
-//          case magnitude > 5:
-//          return "#FF0000"; // red
-//          case magnitude > 4:
-//          return "#FFA500"; // orange
-//          case magnitude > 3:
-//          return "#FFA07A"; // lightsalmon
-//          case magnitude > 2:
-//          return "#FFFF00"; // yellow
-//          case magnitude > 1:
-//          return "#7CFC00"; // lawngreen
-//          default:
-//          return "#FFE4C4"; // bisque
-//      }
-//  };
- 
-// COLORS:
- //  #FF0000 red
- //  #FF4500 orangered
- //  #FFA500 orange  
- //  #FFFF00 yellow 
- //  #FFA07A lightsalmon  
- //  #FFDAB9 peachpuff
- //  #FFE4C4 bisque  
- //  #FFFFE0 lightyellow  
- //  #7CFC00 lawngreen  
- //  #9ACD32 yellowgreen
+// COLORS 2:
+// #DC143C crimson 	   	
+// #FF8C00 darkorange  	   
+// #00CED1 darkturquoise  	   	
+// #9400D3 darkviolet 
+//  #1E90FF dodgerblue
+// #B0E0E6 powderblue  
 
  function getColor(magnitude){
     switch(true) {
@@ -76,13 +57,7 @@ var plates_link = "js/plates.json"
     }
 };
 
-// COLORS 2:
-// #DC143C crimson 	   	
-// #FF8C00 darkorange  	   
-// #00CED1 darkturquoise  	   	
-// #9400D3 darkviolet 
-//  #1E90FF dodgerblue
-// #B0E0E6 powderblue  
+
        
 
  // function get Radius
@@ -114,7 +89,7 @@ function populateInfo(feature, layer) {
 
 // Here we add a GeoJSON layer to the map once the file is loaded.
 d3.json(link, function(data){
-    L.geoJson(data, {
+    var geojsonLayer1 = L.geoJson(data, {
         // We turn each feature into a circleMarker on the map.
         pointToLayer: function(feature, latlng) {
           return L.circleMarker(latlng);
@@ -126,10 +101,15 @@ d3.json(link, function(data){
         
         
       }).addTo(map);
+      controlLayers.addOverlay(geojsonLayer1, 'Weekly Earthquakes');
 
+    })
 // add plate layer
 
-
+d3.json(plates_link, function(data) {
+    // Creating a GeoJSON layer with the retrieved data
+    var geojsonLayer2  = L.geoJson(data).addTo(map);
+    controlLayers.addOverlay(geojsonLayer2, "Fault Lines");
         
    
 
