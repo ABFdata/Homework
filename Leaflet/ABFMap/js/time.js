@@ -4,7 +4,7 @@ var map = L.map("map", {
     zoom: 4,
     timeDimension: true,
     timeDimensionOptions: {
-        timeInterval: "2018-02-27/2018-03-06",
+        timeInterval: "2018-02-28/2018-03-07",
         period: "PT1H"
     },
     timeDimensionControl: true,
@@ -39,6 +39,8 @@ var baseMaps = {
     "Grayscale": grayscale
 };
 
+
+
 // earthquakes all week data
 var link = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson"
 
@@ -49,9 +51,9 @@ var controlLayers = L.control.layers(baseMaps).addTo(map);
 
 // TIME DIMENSION TEST
 
-//var timeSeries = L.timeDimension(earthquakeLayer).addTo(map);
+// var timeSeries = L.timeDimension(earthquakeLayer).addTo(map);
 
-//L.timeDimension.layer.geoJson(layer).addTo(map);
+// L.timeDimension.layer.geoJson(layer).addTo(map);
 
 
  function styleInfo(feature){
@@ -70,7 +72,7 @@ var controlLayers = L.control.layers(baseMaps).addTo(map);
 // #FF8C00 darkorange  	   
 // #00CED1 darkturquoise  	   	
 // #9400D3 darkviolet 
-//  #1E90FF dodgerblue
+// #1E90FF dodgerblue
 // #B0E0E6 powderblue  
 
  function getColor(magnitude){
@@ -140,6 +142,8 @@ d3.json(link, function(data){
         // We turn each feature into a circleMarker on the map.
         pointToLayer: function(feature, latlng) {
           return L.circleMarker(latlng);
+          
+          
         },
         // We set the style for each circleMarker using our styleInfo function.
         style: styleInfo,

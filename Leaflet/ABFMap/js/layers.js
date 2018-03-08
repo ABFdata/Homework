@@ -23,7 +23,6 @@ var satellite = L.tileLayer("https://api.mapbox.com/styles/v1/mapbox/satellite-s
 var grayscale = L.tileLayer("https://api.mapbox.com/styles/v1/mapbox/dark-v9/tiles/256/{z}/{x}/{y}?" + apiKey,
 {id: 'map'});
 
-// Grayscale.addTo(map);
 
 var baseMaps = {
     "Outdoors": outdoors,
@@ -35,6 +34,8 @@ var baseMaps = {
 var link = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson"
 
 var plates_link = "../json/plates.json"
+
+// var plates_link = "https://raw.githubusercontent.com/fraxen/tectonicplates/master/GeoJSON/PB2002_plates.json"
 
 var controlLayers = L.control.layers(baseMaps).addTo(map);
 
