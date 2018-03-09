@@ -68,21 +68,14 @@ app = Flask(__name__, static_folder="static")
 
 # first route returns to the dashboard home page
 @app.route("/")
-def index():
+def home():
+    return render_template("index.html")
     
-    return render_template("index.html", sample_names_list=sample_names_list)
-    # return render_template("index.html", otu_results_list=otu_results_list)
-    # return render_template("index.html", bbb_meta_dict=bbb_meta_dict)
-    # return render_template("index.html", wfreq=wfreq)
-    # return render_template("index.html", sample_dict=sample_dict)
-
-
-# # second route returns a list of sample names
+# second route returns a list of sample names
 @app.route("/names")
 def names():
     """Return list of sample names"""
     sample_names_list
-
     return jsonify(sample_names_list)
     
 # third route returns a list of OTU descriptions
@@ -91,10 +84,19 @@ def otu_func():
     """List of OTU descriptions."""
     otu_results = session.query(otu_des.lowest_taxonomic_unit_found).all()
     otu_results_list = list(np.ravel(otu_results))
-
     return jsonify(otu_results_list)
 
-# fourth route returns a json dictionary of sample metadata
+# fourth route returns a dictionary of OTU descriptions
+@app.route("/otu_descriptions")
+def otu_dictionary():
+    """Dictionary of OTU descriptions."""
+    otu_descriptions = session.query(otu_des.otu_id, otu_des.lowest_taxonomic_unit_found).all()
+    otu_dict = {}
+    for row in otu_descriptions:
+        otu_dict[row[0]] = row[1]
+    return jsonify(otu_dict)
+
+# fifth route returns a json dictionary of sample metadata
 @app.route('/metadata/<sample>')
 # here we have to def a func for <sample>
 def show_meta_sample(sample = 'BB_940'):
@@ -131,19 +133,17 @@ def show_meta_sample(sample = 'BB_940'):
 
 # fifth route returns an integer value for the weekly washing frequency 'WFREQ'
 # @app.route('/freq')
-@app.route('/wfreq/<samplewf>')
-def show_freq_sample(samplewf = 'BB_940'):
+@app.route('/wfreq/<sample>')
+def show_freq_sample(sample = 'BB_940'):
 
     # set index to sample id and store in wf
     wf = bbb_meta_df.set_index('SAMPLEID')
 
-    # samplewf = 'BB_940'
-
     # strip BB_ 
-    samplewf_ID = int(samplewf.replace("BB_",""))
+    sample_ID = int(sample.replace("BB_",""))
 
     # create a new df object and use .loc
-    wf_new = wf.loc[[samplewf_ID],['WFREQ']]
+    wf_new = wf.loc[[sample_ID],['WFREQ']]
 
     # get the int value of WFREQ
     results2 = wf_new["WFREQ"].item()
@@ -170,18 +170,15 @@ def show_samp(sample= 'BB_943'):
     bbb_sampleDF_nan2 = bbb_sampleDF_nan1.dropna()
 
     # this takes the sample col or the SAMPLEID col and stores it into a list
-    sample_val = bbb_sampleDF_nan2[sample].tolist()
+    sample_values = bbb_sampleDF_nan2[sample].tolist()
 
     # stores the otu_id col into a list
     otu_ids = bbb_sampleDF_nan2['otu_id'].tolist()
 
     # create a dictionary stored in a list
-    otu_samp_dict = [{'otu_ids': otu_ids, 'sample_values': sample_val}]
+    otu_samp_dict = [{"otu_ids": otu_ids}, {"sample_values": sample_values}]
 
     return jsonify (otu_samp_dict)
-
-
-
 
 if __name__ == "__main__":
     app.run(debug=True)
