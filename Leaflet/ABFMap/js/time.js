@@ -17,7 +17,7 @@ var map = L.map("map", {
 var apiKey = "access_token=pk.eyJ1IjoiYWJmZGF0YSIsImEiOiJjamU2aHlrZTgwMGdxMzNxa3R3OG5wZmNkIn0._No3joCSQ0ZhN2KE30LC8w";
 
 // Add default layer
-L.tileLayer("https://api.mapbox.com/styles/v1/mapbox/outdoors-v10/tiles/256/{z}/{x}/{y}?" + apiKey).addTo(map);
+//L.tileLayer("https://api.mapbox.com/styles/v1/mapbox/outdoors-v10/tiles/256/{z}/{x}/{y}?" + apiKey).addTo(map);
 
 // Outdoors - default map
 var outdoors = L.tileLayer("https://api.mapbox.com/styles/v1/mapbox/outdoors-v10/tiles/256/{z}/{x}/{y}?" + apiKey, 
@@ -39,6 +39,8 @@ var baseMaps = {
     "Grayscale": grayscale
 };
 
+grayscale.addTo(map);
+
 
 
 // earthquakes all week data
@@ -46,7 +48,7 @@ var link = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.g
 
 var plates_link = "../json/plates.json"
 
-var controlLayers = L.control.layers(baseMaps).addTo(map);
+L.control.layers(baseMaps).addTo(map);
 
 
 // TIME DIMENSION TEST
@@ -192,3 +194,22 @@ legend.addTo(map);
 
 });
 
+
+var getInterval = function(quake) {
+    return {
+        start: quake.properties.time,
+        end: quake.properties.time + quake.properties.mag * 10000000 * 2
+};
+};
+
+// };
+
+var timelineControl = L.timelineSliderControl({
+    formatOutput: function(date) {
+        return new Date(date).toString();
+    },
+    steps: 200
+});
+
+// slider control
+// timeline
