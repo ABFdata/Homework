@@ -3,10 +3,10 @@ var map = L.map("map", {
     center: [37.09, -95.71],
     zoom: 4,
     timeDimension: true,
-    timeDimensionOptions: {
-        timeInterval: "2018-03-07/2018-03-08",
-        period: "PT1H"
-    },
+    // timeDimensionOptions: {
+    //     timeInterval: "2018-03-07/2018-03-08",
+    //     period: "PT1H"
+    //},
     timeDimensionControl: true,
 
 });
@@ -19,25 +19,29 @@ var grayscale = L.tileLayer("https://api.mapbox.com/styles/v1/mapbox/dark-v9/til
 
 var link = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson"
 
+grayscale.addTo(map);
 
 // load geoJson data
-// Grabbing our GeoJSON data..
 d3.json(link, function(data) {
+    var getInterval = function(quake){
+        return{
+            start: quake.properties.time,
+            end: quake.properties.time + quake.properties.mag * 1000000 * 2
+        };
+    };
+
+    var timelineControl = L.timelineSliderControl({
+        formatOutput: function(date) {
+            return new Date(date).toString();
+        },
+        steps: 200
+    });
+
+
+
+
+
     // Creating a GeoJSON layer with the retrieved data
     L.geoJson(data).addTo(map);
   });
-
-// var wmsLayer = L.tileLayer.wms(link, {
-//     layers: grayscale,
-//     format: 'image/png',
-//     transparent: true,
-
-// });
-
-
-
-// // Create and add a TimeDimension Layer to the Map
-// var tdWmsLayer = L.timeDimension.layer.wms(wmsLayer);
-// tdWmsLayer.addTo(map);
-
 

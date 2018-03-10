@@ -48,7 +48,7 @@ var link = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.g
 
 var plates_link = "../json/plates.json"
 
-L.control.layers(baseMaps).addTo(map);
+var controlLayers = L.control.layers(baseMaps).addTo(map);
 
 
 // TIME DIMENSION TEST
@@ -194,22 +194,23 @@ legend.addTo(map);
 
 });
 
+// script for time slider
 
-var getInterval = function(quake) {
-    return {
-        start: quake.properties.time,
-        end: quake.properties.time + quake.properties.mag * 10000000 * 2
-};
-};
-
+// var getInterval = function(quake) {
+//     return {
+//         start: quake.properties.time,
+//         end: quake.properties.time + quake.properties.mag * 1000000 * 2
+// };
 // };
 
-var timelineControl = L.timelineSliderControl({
-    formatOutput: function(date) {
-        return new Date(date).toString();
-    },
-    steps: 200
-});
+
+
+// var timelineControl = L.timelineSliderControl({
+//     formatOutput: function(date) {
+//         return new Date(date).toString();
+//     },
+//     steps: 200
+// });
 
 // slider control
 // timeline
