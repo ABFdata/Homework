@@ -3,3 +3,6 @@ CitiBike/Tableau-CitiBike
 
 # ignore TripData
 CitiBike/TripData
+
+# ignore tableau file
+CitiBike.twb
