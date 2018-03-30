@@ -5,4 +5,7 @@ CitiBike/Tableau-CitiBike
 CitiBike/TripData
 
 # ignore tableau file
-CitiBike.twb
+Tableau-CitiBike/CitiBike.twb
+
+# ignore
+CitiBike/EDA
