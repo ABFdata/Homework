@@ -41,3 +41,4 @@ The end user can toggle through the overlays to view different versions of the m
 <hr>
 
 ### Step 3: Time Keeps on Ticking
+![7-NotGif](images/leaflet_earthquakeMap.gif)
