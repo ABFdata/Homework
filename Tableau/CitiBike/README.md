@@ -22,10 +22,10 @@ However, while the data has been regularly updated, the team has yet to implemen
 ![PeakSummerHours](img/citibike_hour_start.png)
 
 ## Percent Change of Customers
-![PercentChangeCustomers](img/citibike_percent_change_customer)
+![PercentChangeCustomers](img/citibike_percent_change_customer.png)
 
 ## Percent Change of Subscribers
-![PercentChangeSubscribers](img/citibike_percent_change_subscriber)
+![PercentChangeSubscribers](img/citibike_percent_change_subscriber.png)
 
 <hr>
 
