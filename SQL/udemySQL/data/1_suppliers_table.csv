@@ -1,0 +1,10 @@
+supplier_id,supplier_name,city,state,total_spent
+100,"Shop of Epiphany",Augusta,Georgia,220500.00
+200,"Instant Assemblers",Valdez,Alaska,37000.00
+300,"Time Manufactures","Redwood City",California,90500.00
+400,"Roadhouse Inc.","New York City","New York",78150.00
+500,"Smiths & Berries",Portland,Oregon,114600.00
+600,"Wesson LLC",Yuma,Alaska,32000.00
+700,"ICF Foods",Orlando,Caliornia,78700.00
+800,"Cheffmens Inc.",Toledo,Georgia,187500.00
+900,"Samwoods Drinks.",Portland,Georgia,17800.00
