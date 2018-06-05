@@ -23,6 +23,7 @@
 * Interactive Dashboards through [Flask, Plotly, Javascript, HTML/CSS](https://github.com/ABFdata/Homework/tree/master/BellyButtonBio/ABF_BBB_Dashboard)
 * Interactive [D3 charts](https://github.com/ABFdata/Homework/tree/master/D3Chart/Instructions/Skeleton) and dynamic scatter plots
 * Interactive [Maps](https://github.com/ABFdata/Homework/tree/master/Leaflet/ABFMap) through leaflet. 
+* Analyzing and Visualziing World Economic Data with [leaflet](https://github.com/ucidatabootcamp-7/UCI-Project-02/tree/andy5).
 * Dynamic Dashboards and Visualizations through [Tableau](https://github.com/ABFdata/Homework/tree/master/Tableau/CitiBike)
 
 
