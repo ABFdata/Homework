@@ -6,13 +6,14 @@ SELECT
     first_name, last_name
 FROM
     actor;
+    
 
 -- 1b. Display the first and last name of each actor in a single column in upper case letters. Name the column `Actor Name`. 
 SELECT 
     CONCAT(first_name, ' ', last_name) AS 'actor_name'
 FROM
     actor;
-
+    
 SELECT 
     *
 FROM
@@ -26,6 +27,9 @@ FROM
     actor
 WHERE
     first_name = 'Joe';
+    
+select * from actor;
+
 
 -- 2b. Find all actors whose last name contain the letters `GEN`:
 SELECT 
@@ -34,6 +38,10 @@ FROM
     actor
 WHERE
     last_name LIKE '%GEN%';
+    
+select first_name, last_name
+from actor
+where last_name like '%GEN%';
 
 -- 2c. Find all actors whose last names contain the letters `LI`. This time, order the rows by last name and first 
 -- name, in that order:
@@ -43,6 +51,7 @@ FROM
     actor
 WHERE
     last_name LIKE '%LI%';
+    
 
 -- 2d. Using `IN`, display the `country_id` and `country` columns of the 
 -- following countries: Afghanistan, Bangladesh, and China:
@@ -54,6 +63,11 @@ WHERE
     country = 'Afghanistan'
         OR country = 'Bangladesh'
         OR country = 'China';
+        
+# other way to query
+select country_id, country
+from country
+where country in ('Afghanistan', 'Bangladesh', 'China');
 
 -- * 3a. Add a `middle_name` column to the table `actor`. Position it between `first_name` and `last_name`. 
 -- Hint: you will need to specify the data type.
@@ -91,6 +105,13 @@ FROM
 GROUP BY last_name
 HAVING COUNT(*) > 0;
 
+# new entry
+select last_name, count(*) as count
+from actor
+group by last_name
+having count > 0
+order by count DESC;
+
 -- 4b. List last names of actors and the number of actors who have that last name, but only for names 
 -- that are shared by at least two actors
 SELECT 
@@ -99,6 +120,13 @@ FROM
     actor
 GROUP BY last_name
 HAVING COUNT(*) > 1;
+
+select last_name, count(*) as count
+from actor
+group by last_name
+having count > 1
+order by count desc;
+
 
 -- Oh, no! The actor `HARPO WILLIAMS` was accidentally entered in the `actor` table as `GROUCHO WILLIAMS`, 
 -- the name of Harpo's second cousin's husband's yoga teacher. Write a query to fix the record.
@@ -181,6 +209,8 @@ FROM
     staff
         JOIN
     address ON staff.address_id = address.address_id;
+    
+
 
 -- 6b. Use `JOIN` to display the total amount rung up by each staff member in August of 2005. 
 -- Use tables `staff` and `payment`. 
@@ -198,6 +228,13 @@ FROM
 WHERE
     payment_date LIKE '2005-08%'
 GROUP BY staff.staff_id;
+
+
+select first_name, last_name, sum(amount) as 'Total'
+from staff
+join payment on staff.staff_id = payment.staff_id
+where payment_date like '2005-08%'
+group by staff.staff_id;
 
 -- 6c. List each film and the number of actors who are listed for that film. 
 -- Use tables `film_actor` and `film`. Use inner join.
